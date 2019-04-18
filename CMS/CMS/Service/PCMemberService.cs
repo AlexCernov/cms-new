@@ -14,28 +14,10 @@ namespace CMS.Service
             this.pcmemberRepository = pcmemberRepository;
         }
 
-		string IPCMemberService.f
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
 
 		public PCMember Add(PCMember addedPCMember)
         {
             return pcmemberRepository.Add(addedPCMember);
-        }
-
-
-        public bool EmailExists(string email)
-        {
-            return pcmemberRepository.FindByEmail(email) != null;
         }
 
         public IList<PCMember> FindAll()
@@ -43,7 +25,7 @@ namespace CMS.Service
             return pcmemberRepository.FindAll();
         }
 
-		public PCMember findByEmail(string email)
+		public PCMember FindByEmail(string email)
 		{
 			return pcmemberRepository.FindByEmail(email);
 		}
@@ -54,29 +36,11 @@ namespace CMS.Service
 
         }
 
-		PCMember IPCMemberService.Add(PCMember addedPCMember)
-		{
-			throw new NotImplementedException();
-		}
+        public bool EmailExists(string email)
+        {
+            return pcmemberRepository.FindByEmail(email) != null;
 
-		bool IPCMemberService.EmailExists(string email)
-		{
-			throw new NotImplementedException();
-		}
+        }
 
-		IList<PCMember> IPCMemberService.FindAll()
-		{
-			throw new NotImplementedException();
-		}
-
-		PCMember IPCMemberService.FindByEmail(string email)
-		{
-			throw new NotImplementedException();
-		}
-
-		bool IPCMemberService.UsernameExists(string username)
-		{
-			throw new NotImplementedException();
-		}
-	}
+    }
 }

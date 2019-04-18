@@ -1,5 +1,7 @@
 ﻿
+using CMS.Exception;
 using CMS.Models;
+using CMS.Service;
 
 namespace CMS.ViewModels
 {
@@ -46,7 +48,10 @@ namespace CMS.ViewModels
 				Status = false;
 			}
 		}
-		public bool CheckUser(IAuthorService authorService, Author author)
+
+        public Author Author { get; private set; }
+
+        public bool CheckUser(IAuthorService authorService, Author author)
 		{
 			bool userExists;
 			try

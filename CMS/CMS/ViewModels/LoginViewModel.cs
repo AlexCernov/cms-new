@@ -29,7 +29,12 @@ namespace CMS.ViewModels
 
         public LoginViewModel(IPCMemberService pCMemberService, Guid activationCode)
         {
-			SetCoockie(pCMemberService.f, true);
+			SetCoockie(pCMemberService, true);
+        }
+
+        private void SetCoockie(IPCMemberService pCMemberService, bool v)
+        {
+            throw new NotImplementedException();
         }
 
         public LoginViewModel(bool modelState, string username, string password, bool rememberMe, IPCMemberService pcmemberService, out int returnValue)

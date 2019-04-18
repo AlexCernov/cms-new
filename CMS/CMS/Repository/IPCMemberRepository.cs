@@ -11,6 +11,7 @@ namespace CMS.Repository
     {
         PCMember Add(PCMember addedPcMember);
         PCMember FindByUsername(string username);
+        PCMember FindByEmail(string email);
         IList<PCMember> FindAll();
     }
 }

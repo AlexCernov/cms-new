@@ -39,11 +39,11 @@ namespace CMS.Controllers
 
 
 		[HttpPost]
-		public ActionResult Registration(AuthorController author)
+		public ActionResult Registration(Author author)
 		{
 			try
 			{
-				var model = new RegistrationViewModel(ModelState.IsValid, author, AuthorService);
+				var model = new RegistrationAuthorViewModel(ModelState.IsValid, author, AuthorService);
 				return View(model);
 			}
 			catch (System.Exception e)
