@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CMS.Controllers;
 using CMS.Exception;
 using CMS.Models;
 using CMS.Service;
@@ -15,6 +16,9 @@ namespace CMS.ViewModels
 		public string Message;
 		public bool Status;
 		public string Title;
+		private bool isValid;
+		private AuthorController author;
+		private IAuthorService authorService;
 
 		public RegistrationViewModel()
 		{
@@ -51,6 +55,13 @@ namespace CMS.ViewModels
 				Message = " Invalid request";
 				Status = false;
 			}
+		}
+
+		public RegistrationViewModel(bool isValid, AuthorController author, IAuthorService authorService)
+		{
+			this.isValid = isValid;
+			this.author = author;
+			this.authorService = authorService;
 		}
 
 		public bool CheckUser(IPCMemberService pcmemberService, PCMember pcmember)

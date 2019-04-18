@@ -66,7 +66,7 @@ namespace CMS.ViewModels
 			}
 			try
 			{
-				Author = authorService.Add(author);
+				author = authorService.Add(author);
 			}
 			catch
 			{
