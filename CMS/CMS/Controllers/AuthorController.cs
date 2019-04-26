@@ -33,17 +33,18 @@ namespace CMS.Controllers
 			{
 				return RedirectToAction("PermissionDenied");
 			}
-			RegistrationViewModel model = new RegistrationViewModel();
+			RegistrationAuthorViewModel model = new RegistrationAuthorViewModel();
 			return View(model);
 		}
 
 
 		[HttpPost]
-		public ActionResult Registration(AuthorController author)
+		public ActionResult Registration(string Author_Name,string Author_Email, string Author_Username, string Author_Password, string Author_Affiliation)
 		{
 			try
 			{
-				var model = new RegistrationViewModel(ModelState.IsValid, author, AuthorService);
+                Author author = new Author(Author_Username, Author_Password);
+				var model = new RegistrationAuthorViewModel(ModelState.IsValid, author, AuthorService);
 				return View(model);
 			}
 			catch (System.Exception e)
@@ -51,5 +52,11 @@ namespace CMS.Controllers
 				throw new InternetException("Cannot request the correspondind viewmodel!\n");
 			}
 		}
+
+        [HttpPost]
+        public ActionResult Registration(FormCollection form)
+        {
+            return View();
+        }
 	}
 }

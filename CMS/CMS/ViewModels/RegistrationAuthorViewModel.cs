@@ -7,10 +7,10 @@ namespace CMS.ViewModels
 {
 	public class RegistrationAuthorViewModel : IRegistrationAuthorViewModel
 	{
-		public Author author;
-		public string Message;
-		public bool Status;
-		public string Title;
+		public Author Author { get; set; }
+		public string Message { get; set; }
+		public bool Status { get; set; }
+		public string Title { get; set; }
 
 		public RegistrationAuthorViewModel()
 		{

@@ -260,9 +260,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PCMember\LogIn.cshtml" />
-    <Content Include="Views\PCMember\PCMemberRegistration.cshtml" />
-    <Content Include="Views\Author\AuthorLogin.cshtml" />
-    <Content Include="Views\Author\AuthorRegistration.cshtml" />
+    <Content Include="Views\Author\Login.cshtml" />
+    <Content Include="Views\Author\Registration.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -272,6 +271,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\PCMember\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
