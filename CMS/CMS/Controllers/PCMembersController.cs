@@ -82,11 +82,11 @@ namespace CMS.Controllers
 
 
 
-        //// GET: PCMembers
-        //public ActionResult Index()
-        //{
-        //    return View(db.PCMembers.ToList());
-        //}
+        // GET: PCMembers
+        public ActionResult Index()
+        {
+            return View(PCMemberService.FindAll());
+        }
 
         //// GET: PCMembers/Details/5
         //public ActionResult Details(int? id)
