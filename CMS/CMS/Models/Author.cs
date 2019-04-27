@@ -7,12 +7,15 @@ namespace CMS.Models
 
     public class Author
     {
-
-
         public Author(string username, string password)
         {
             Username = username;
             Password = password;
+        }
+
+        public Author()
+        {
+
         }
 
         [Key]
@@ -46,10 +49,6 @@ namespace CMS.Models
         public Abstract Abstract { get; set; }
 
         public virtual ICollection<Paper> Papers { get; set; }
-
-        public Author()
-        {
-        }
 
     }
 }

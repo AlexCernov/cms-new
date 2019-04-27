@@ -53,5 +53,11 @@ namespace CMS.Repositories
 
             return pcmembers.SingleOrDefault(x => x.Username == username);
         }
+
+        public PCMember FindByEmail(string email)
+        {
+            IList<PCMember> pCMembers = FindAll();
+            return pCMembers.SingleOrDefault(x => x.Email == email);
+        }
     }
 }

@@ -59,9 +59,11 @@ namespace CMS.ViewModels
         public bool CheckUser(IUserService<PCMember> service, PCMember entity)
         {
             bool usernameExists;
+            bool emailExists;
             try
             {
                 usernameExists = service.UsernameExists(entity.Username);
+                emailExists = service.EmailExists(entity.Email);
             }
             catch
             {
@@ -71,6 +73,11 @@ namespace CMS.ViewModels
             if (usernameExists)
             {
                 throw new DatabaseException(" Username already exists!\n");
+            }
+
+            if (emailExists)
+            {
+                throw new DatabaseException(" An account with the given email already exists!\n");
             }
             try
             {

@@ -30,5 +30,10 @@ namespace CMS.Services
 			return authorRepository.FindByUsername(username) != null;
 
         }
+
+        public bool EmailExists(string email)
+        {
+            return authorRepository.FindByEmail(email) != null;
+        }
     }
 }

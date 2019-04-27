@@ -53,5 +53,11 @@ namespace CMS.Repositories
 
             return authors.SingleOrDefault(x => x.Username == username);
         }
+
+        public Author FindByEmail(string email)
+        {
+            IList<Author> authors = FindAll();
+            return authors.SingleOrDefault(x => x.Email == email);
+        }
     }
 }

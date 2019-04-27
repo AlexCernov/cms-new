@@ -35,5 +35,10 @@ namespace CMS.Services
             return pcmemberRepository.FindByUsername(username) != null;
 
         }
+
+        public bool EmailExists(string email)
+        {
+            return pcmemberRepository.FindByEmail(email) != null;
+        }
     }
 }

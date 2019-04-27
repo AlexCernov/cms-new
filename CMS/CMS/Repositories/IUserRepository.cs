@@ -10,7 +10,7 @@ namespace CMS.Repositories
     {
         T Add(T entity);
         T FindByUsername(string username);
-
+        T FindByEmail(string email);
         IList<T> FindAll();
     }
 }
