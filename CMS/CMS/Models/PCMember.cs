@@ -13,6 +13,11 @@ namespace CMS.Models
             this.Password = password;
         }
 
+        public PCMember()
+        {
+
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
