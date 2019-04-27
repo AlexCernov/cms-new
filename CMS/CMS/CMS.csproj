@@ -148,6 +148,7 @@
     <Compile Include="Services\PCMemberService.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
+    <Compile Include="ViewModels\LoginPCMemberViewModel.cs" />
     <Compile Include="ViewModels\RegisterPCMemberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +233,7 @@
     <Content Include="Views\PCMembers\Edit.cshtml" />
     <Content Include="Views\PCMembers\Index.cshtml" />
     <Content Include="Views\PCMembers\Register.cshtml" />
+    <Content Include="Views\PCMembers\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using CMS.Models;
+﻿using CMS.Models;
 using CMS.Repositories;
 using CMS.Services;
 using CMS.ViewModels;
+using System.Web.Mvc;
 
 namespace CMS.Controllers
 {
     public class PCMembersController : Controller
     {
-        PCMemberService PCMemberService;
+        private readonly PCMemberService PCMemberService;
 
         public PCMembersController()
         {
@@ -25,7 +18,12 @@ namespace CMS.Controllers
         // GET : PcMembers/Register
         public ActionResult Register()
         {
-            var model = new RegisterPCMemberViewModel();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+
+            RegisterPCMemberViewModel model = new RegisterPCMemberViewModel();
             return View(model);
         }
 
@@ -36,10 +34,44 @@ namespace CMS.Controllers
             try
             {
 
-                var model = new RegisterPCMemberViewModel(ModelState.IsValid, pCMember, PCMemberService);
+                RegisterPCMemberViewModel model = new RegisterPCMemberViewModel(ModelState.IsValid, pCMember, PCMemberService);
                 return View(model);
             }
-            catch (System.Exception e)
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
+
+
+        // GET : PCMembers/Login
+
+        public ActionResult Login()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            LoginPCMemberViewModel model = new LoginPCMemberViewModel();
+            return View(model);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string username, string password, bool rememberMe)
+        {
+            try
+            {
+                LoginPCMemberViewModel model = new LoginPCMemberViewModel(ModelState.IsValid, username, password, rememberMe, PCMemberService, out int response);
+                if (response == 1)
+                {
+                    Response.Cookies.Add(model.Cookie);
+                    return RedirectToAction("Index");//we want to load a new page with new url, not just rendering the view
+                }
+                return View(model);
+            }
+            catch
             {
                 return RedirectToRoute("~/Shared/Error");
             }
