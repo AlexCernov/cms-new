@@ -21,6 +21,7 @@ namespace CMS.Models
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
