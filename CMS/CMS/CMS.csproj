@@ -153,9 +153,10 @@
     <Compile Include="Repositories\IEntityRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\Users\PCMemberRepository.cs" />
-    <Compile Include="Services\AuthorService.cs" />
+    <Compile Include="Services\IEntityService.cs" />
+    <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Services\PCMemberService.cs" />
+    <Compile Include="Services\Users\PCMemberService.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
     <Compile Include="ViewModels\LoginAuthorViewModel.cs" />
@@ -256,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\Entities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

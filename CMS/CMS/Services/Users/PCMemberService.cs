@@ -2,7 +2,7 @@
 using CMS.Repositories;
 using System.Collections.Generic;
 
-namespace CMS.Services
+namespace CMS.Services.Users
 {
     public class PCMemberService : IUserService<PCMember>
     {

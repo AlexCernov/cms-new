@@ -1,6 +1,7 @@
 ﻿using CMS.Models;
 using CMS.Repositories.Users;
 using CMS.Services;
+using CMS.Services.Users;
 using CMS.ViewModels;
 using System.Web.Mvc;
 

@@ -3,7 +3,7 @@ using CMS.Repositories;
 using System;
 using System.Collections.Generic;
 
-namespace CMS.Services
+namespace CMS.Services.Users
 {
     public class AuthorService : IUserService<Author>
     {

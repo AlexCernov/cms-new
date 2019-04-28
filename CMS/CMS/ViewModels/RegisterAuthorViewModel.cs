@@ -5,6 +5,7 @@ using System.Web;
 using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
+using CMS.Services.Users;
 
 namespace CMS.ViewModels
 {

@@ -1,6 +1,7 @@
 ﻿using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
+using CMS.Services.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
