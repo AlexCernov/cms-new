@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PCMembersController.cs" />
     <Compile Include="Exceptions\DatabaseException.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
     <Compile Include="ViewModels\LoginPCMemberViewModel.cs" />
+    <Compile Include="ViewModels\RegisterAuthorViewModel.cs" />
     <Compile Include="ViewModels\RegisterPCMemberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +238,12 @@
     <Content Include="Views\PCMembers\Index.cshtml" />
     <Content Include="Views\PCMembers\Register.cshtml" />
     <Content Include="Views\PCMembers\Login.cshtml" />
+    <Content Include="Views\Authors\Create.cshtml" />
+    <Content Include="Views\Authors\Delete.cshtml" />
+    <Content Include="Views\Authors\Details.cshtml" />
+    <Content Include="Views\Authors\Edit.cshtml" />
+    <Content Include="Views\Authors\Index.cshtml" />
+    <Content Include="Views\Authors\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
