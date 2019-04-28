@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using CMS.Models;
+﻿using CMS.Models;
+using CMS.Repositories.Users;
 using CMS.Services;
-using CMS.Repositories;
 using CMS.ViewModels;
+using System.Web.Mvc;
 
 namespace CMS.Controllers
 {
@@ -50,7 +43,7 @@ namespace CMS.Controllers
         }
 
         // GET : Authors/Login
-        
+
         public ActionResult Login()
         {
             if (Request.IsAuthenticated)
@@ -67,7 +60,7 @@ namespace CMS.Controllers
         {
             try
             {
-                LoginAuthorViewModel model = new LoginAuthorViewModel(ModelState.IsValid, username, password, rememberMe, AuthorService, out int response); 
+                LoginAuthorViewModel model = new LoginAuthorViewModel(ModelState.IsValid, username, password, rememberMe, AuthorService, out int response);
                 if (response == 1)
                 {
                     Response.Cookies.Add(model.Cookie);

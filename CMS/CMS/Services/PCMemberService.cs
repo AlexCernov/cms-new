@@ -1,9 +1,6 @@
 ﻿using CMS.Models;
 using CMS.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace CMS.Services
 {
@@ -11,7 +8,10 @@ namespace CMS.Services
     {
         private readonly IUserRepository<PCMember> pcmemberRepository;
 
-        public PCMemberService(IUserRepository<PCMember> pcmemberRepository) => this.pcmemberRepository = pcmemberRepository;
+        public PCMemberService(IUserRepository<PCMember> pcmemberRepository)
+        {
+            this.pcmemberRepository = pcmemberRepository;
+        }
 
         public PCMember Add(PCMember entity)
         {

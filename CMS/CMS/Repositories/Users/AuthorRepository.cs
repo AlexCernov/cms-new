@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
 
-namespace CMS.Repositories
+namespace CMS.Repositories.Users
 {
     public class AuthorRepository : IUserRepository<Author>
     {

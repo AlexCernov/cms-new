@@ -1,5 +1,5 @@
 ﻿using CMS.Models;
-using CMS.Repositories;
+using CMS.Repositories.Users;
 using CMS.Services;
 using CMS.ViewModels;
 using System.Web.Mvc;
