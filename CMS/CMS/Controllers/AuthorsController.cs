@@ -49,15 +49,49 @@ namespace CMS.Controllers
             }
         }
 
+        // GET : Authors/Login
+        
+        public ActionResult Login()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Permission denied!\n");
+            }
+            LoginAuthorViewModel model = new LoginAuthorViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string username, string password, bool rememberMe)
+        {
+            try
+            {
+                LoginAuthorViewModel model = new LoginAuthorViewModel(ModelState.IsValid, username, password, rememberMe, AuthorService, out int response); 
+                if (response == 1)
+                {
+                    Response.Cookies.Add(model.Cookie);
+                    return RedirectToAction("Index");
+                }
+                return View(model);
+            }
+            catch
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
+
+        // GET: Authors
+        public ActionResult Index()
+        {
+            return View(AuthorService.FindAll());
+        }
+
         // generated code
 
         //private DatabaseContext db = new DatabaseContext();
 
-        //// GET: Authors
-        //public ActionResult Index()
-        //{
-        //    return View(db.Authors.ToList());
-        //}
+
 
         //// GET: Authors/Details/5
         //public ActionResult Details(int? id)
