@@ -22,5 +22,6 @@ namespace CMS.Models
         [Required]
         [StringLength(100)]
         public string Location { get; set; }
+        public Comitee Comitee { get; set; }
     }
 }

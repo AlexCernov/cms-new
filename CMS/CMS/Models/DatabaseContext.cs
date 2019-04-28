@@ -6,7 +6,9 @@ namespace CMS.Models
     public class DatabaseContext : DbContext
     {
         public DatabaseContext() : base("DatabaseContext")
-        { }
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, CMS.Migrations.Configuration>());
+        }
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<PCMember> PCMembers { get; set; }

@@ -47,9 +47,9 @@ namespace CMS.Models
         [StringLength(100)]
         public string WebPage { get; set; }
 
-        public Comitee Comitee { get; set; }
-
         public virtual ICollection<Review> Reviews { get; set; }
+
+        public virtual ICollection<Comitee> Comitees { get; set; }
 
     }
 }
