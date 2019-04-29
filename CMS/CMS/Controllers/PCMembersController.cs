@@ -63,7 +63,9 @@ namespace CMS.Controllers
         {
             try
             {
-                LoginPCMemberViewModel model = new LoginPCMemberViewModel(ModelState.IsValid, username, password, rememberMe, PCMemberService, out int response);
+				int response;
+
+				LoginPCMemberViewModel model = new LoginPCMemberViewModel(ModelState.IsValid, username, password, rememberMe, PCMemberService, out response);
                 if (response == 1)
                 {
                     Response.Cookies.Add(model.Cookie);

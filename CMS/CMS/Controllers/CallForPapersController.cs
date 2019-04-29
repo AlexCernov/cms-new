@@ -22,10 +22,35 @@ namespace CMS.Controllers
 
         private DatabaseContext db = new DatabaseContext();
 
-        // GET: CallForPapers
-        public ActionResult Index()
+		[HttpPost]
+		public string Index(FormCollection fc, string searchString)
+		{
+			return "<h3> From [HttpPost]Index: " + searchString + "</h3>";
+		}
+
+		// GET: CallForPapers
+		public ActionResult Index(string callsForPapersAcronym,string searchString)
         {
-            return View(db.CallsForPapers.ToList());
+			var AcronymList = new List<string>();
+
+			var AcronymQry = from a in db.CallsForPapers orderby a.Acronym select a.Acronym;
+
+			AcronymList.AddRange(AcronymQry.Distinct());
+			ViewBag.callsForPapersAcronym = new SelectList(AcronymList);
+
+			var callsforpapers = from c in db.CallsForPapers select c;
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				callsforpapers = callsforpapers.Where(s => s.Name.Contains(searchString));
+			}
+
+			if (!String.IsNullOrEmpty(callsForPapersAcronym))
+			{
+				callsforpapers = callsforpapers.Where(x => x.Acronym == callsForPapersAcronym);
+			}
+            //return View(db.CallsForPapers.ToList());
+			return View(callsforpapers);
         }
 
         // GET: CallForPapers/Details/5

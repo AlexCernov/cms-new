@@ -1,5 +1,6 @@
 ﻿using CMS.Models;
 using CMS.Repositories;
+using CMS.Repositories.Users;
 using System;
 using System.Collections.Generic;
 
@@ -9,8 +10,13 @@ namespace CMS.Services.Users
     {
         private readonly IUserRepository<Author> authorRepository;
 
-        public AuthorService(IUserRepository<Author> authorRepository) => this.authorRepository = authorRepository;
-        public Author Add(Author entity)
+		public AuthorService(AuthorRepository authorRepository)
+		{
+			this.authorRepository = authorRepository;
+		}
+
+		//public AuthorService(IUserRepository<Author> authorRepository) => this.AuthorRepository = authorRepository;
+		public Author Add(Author entity)
         {
             return authorRepository.Add(entity);
         }

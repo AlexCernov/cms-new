@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Models
 {
     public class CallForPapers
+
     {
 
         [Key]
