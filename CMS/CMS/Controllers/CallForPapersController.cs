@@ -77,7 +77,7 @@ namespace CMS.Controllers
 			var viewModel = new CallForPapers
 			{
 				SelectTopic = new SelectList(topics)
-			};	
+			};
 			return View(viewModel);
         }
 
@@ -89,14 +89,15 @@ namespace CMS.Controllers
         public ActionResult Create([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal,Topic_Id1,Topic_Name")] CallForPapers callForPapers)
         {
             if (ModelState.IsValid)
-            {
-				var topicName = from c in db.Topics where c.Id == callForPapers.Topic_Id1 select c.Name ;
+            {				
+				var topicId = from c in db.Topics where c.Id == callForPapers.Topic_Id1 select c.Id;
+				callForPapers.Topic_Id1 = topicId.Single();
+				var topicName = from c in db.Topics where c.Id == callForPapers.Topic_Id1 select c.Name;
 				callForPapers.Topic_Name = topicName.Single();
 				db.CallsForPapers.Add(callForPapers);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+				db.SaveChanges();
+				return RedirectToAction("Index");
             }
-
             return View(callForPapers);
         }
 
