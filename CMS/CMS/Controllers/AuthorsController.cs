@@ -61,7 +61,8 @@ namespace CMS.Controllers
         {
             try
             {
-                LoginAuthorViewModel model = new LoginAuthorViewModel(ModelState.IsValid, username, password, rememberMe, AuthorService, out int response);
+				int response;
+                LoginAuthorViewModel model = new LoginAuthorViewModel(ModelState.IsValid, username, password, rememberMe, AuthorService, out response);
                 if (response == 1)
                 {
                     Response.Cookies.Add(model.Cookie);
