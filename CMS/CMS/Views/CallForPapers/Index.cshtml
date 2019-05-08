@@ -7,8 +7,16 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+	@Html.ActionLink("Create New", "Create")
+
+	@using (Html.BeginForm("Index","CallForPapers",FormMethod.Get))
+	{
+	<p>
+		Acronym: @Html.DropDownList("callsForPapersAcronym","All")
+		Full Name: @Html.TextBox("SearchString") 
+		<input type="submit" value="Select" />
+	</p>
+	}
 <table class="table">
     <tr>
         <th>
@@ -26,6 +34,12 @@
         <th>
             @Html.DisplayNameFor(model => model.DeadlineProposal)
         </th>
+		<th>
+			@Html.DisplayNameFor(model => model.Topic_Id1)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Topic_Name)
+		</th>
         <th></th>
     </tr>
 
@@ -46,6 +60,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.DeadlineProposal)
         </td>
+		<th>
+			@Html.DisplayFor(modelItem => item.Topic_Id1)
+		</th>
+		<th>
+			@Html.DisplayFor(modelItem => item.Topic_Name)
+		</th>
+		
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
