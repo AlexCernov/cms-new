@@ -1,4 +1,4 @@
-﻿@model CMS.Models.CallForPapers
+@model CMS.Models.CallForPapers
 
 @{
     ViewBag.Title = "Details";
@@ -57,6 +57,12 @@
 
 		<dd>
 			@Html.DisplayFor(model => model.ListOfTopicId)
+      
+			@Html.DisplayNameFor(model => model.Topic_Id1)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Topic_Id1)
 		</dd>
 
 		<dt>
