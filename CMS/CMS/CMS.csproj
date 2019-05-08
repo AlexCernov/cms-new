@@ -185,7 +185,9 @@
     <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Users\PCMemberService.cs" />
+    <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
     <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
+    <Compile Include="ViewModels\IDeleteEntityViewModel.cs" />
     <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />

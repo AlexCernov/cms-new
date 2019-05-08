@@ -27,7 +27,7 @@ namespace CMS.Controllers
             ConferenceService = new ConferenceService(new ConferenceRepository());
         }
 
-        private DatabaseContext db = new DatabaseContext();
+        //private DatabaseContext db = new DatabaseContext();
 
         // GET: Conferences
         public ActionResult Index()
@@ -54,13 +54,28 @@ namespace CMS.Controllers
         // GET: Conferences/Create
         public ActionResult Create()
         {
+            
             if (Request.IsAuthenticated)
             {
                 return RedirectToAction("PermissionDenied");
             }
+            /*
+            CreateConferenceViewModel model = new CreateConferenceViewModel();
+            return View(model.CheckEntity(ConferenceService,entity));
+            */
             CreateConferenceViewModel model = new CreateConferenceViewModel();
             return View(model);
 
+        }
+
+        public ActionResult Delete()
+        {
+            if(Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            DeleteConferenceViewModel model = new DeleteConferenceViewModel();
+            return View(model);
         }
 
         // POST: Conferences/Create
@@ -74,6 +89,21 @@ namespace CMS.Controllers
             try
             {
                 CreateConferenceViewModel model = new CreateConferenceViewModel(ModelState.IsValid, conference, ConferenceService);
+                return View(model);
+            }
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete( Conference conference)
+        {
+            try
+            {
+                DeleteConferenceViewModel model = new DeleteConferenceViewModel(ModelState.IsValid, conference, ConferenceService);
                 return View(model);
             }
             catch (System.Exception)

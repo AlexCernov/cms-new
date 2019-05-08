@@ -2,7 +2,7 @@
 
 namespace CMS.ViewModels
 {
-    internal interface ICreateEntityViewModel<T>
+    internal interface IDeleteEntityViewModel<T>
     {
         bool CheckEntity(IEntityService<T> service, T entity);
 

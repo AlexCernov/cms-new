@@ -10,7 +10,7 @@ using CMS.Services.Users;
 
 namespace CMS.ViewModels
 {
-    public class CreateConferenceViewModel : ICreateEntityViewModel<Conference>
+    public class DeleteConferenceViewModel : IDeleteEntityViewModel<Conference>
     {
         public Conference conference;
 
@@ -18,17 +18,17 @@ namespace CMS.ViewModels
         public bool Status { get; }
         public string Title { get; }
 
-        public CreateConferenceViewModel()
+        public DeleteConferenceViewModel()
         {
             Message = null;
-            Title = "Create";
+            Title = "Delete";
         }
 
         public bool CheckEntity(IEntityService<Conference> service, Conference entity)
         {
             try
             {
-                entity = service.Add(entity);
+                entity = service.Delete(entity);
             }
             catch
             {
@@ -40,7 +40,7 @@ namespace CMS.ViewModels
 
         
 
-        public CreateConferenceViewModel(bool modelState, Conference conference, ConferenceService service)
+        public DeleteConferenceViewModel(bool modelState, Conference conference, ConferenceService service)
         {
             if (modelState)
             {
@@ -61,7 +61,7 @@ namespace CMS.ViewModels
                     return;
                 }
 
-                Message = " Registration successful!\n";
+                Message = " Delete successful!\n";
                 Status = true;
             }
             else
