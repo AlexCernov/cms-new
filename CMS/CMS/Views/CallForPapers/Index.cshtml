@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CMS.Models.CallForPapers>
+@model IEnumerable<CMS.Models.CallForPapers>
 
 @{
     ViewBag.Title = "Index";
@@ -8,6 +8,7 @@
 
 <p>
 	@Html.ActionLink("Create New", "Create")
+
 
 <table class="table">
     <tr>
@@ -27,7 +28,11 @@
             @Html.DisplayNameFor(model => model.DeadlineProposal)
         </th>
 		<th>
+      
 			@Html.DisplayName("Topic_Id")
+
+			@Html.DisplayNameFor(model => model.Topic_Id1)
+
 		</th>
 		<th>
 			@Html.DisplayNameFor(model => model.Topic_Name)
