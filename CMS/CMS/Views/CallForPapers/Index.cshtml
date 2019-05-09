@@ -9,6 +9,14 @@
 <p>
 	@Html.ActionLink("Create New", "Create")
 
+	@using (Html.BeginForm("Index","CallForPapers",FormMethod.Get))
+	{
+	<p>
+		Acronym: @Html.DropDownList("callsForPapersAcronym","All")
+		Full Name: @Html.TextBox("SearchString") 
+		<input type="submit" value="Select" />
+	</p>
+	}
 
 <table class="table">
     <tr>
@@ -28,8 +36,10 @@
             @Html.DisplayNameFor(model => model.DeadlineProposal)
         </th>
 		<th>
-      
+
 			@Html.DisplayName("Topic_Id")
+
+			@Html.DisplayNameFor(model => model.Topic_Id1)
 
 			@Html.DisplayNameFor(model => model.Topic_Id1)
 
