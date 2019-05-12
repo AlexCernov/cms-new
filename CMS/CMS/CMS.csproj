@@ -128,7 +128,6 @@
     <Compile Include="Controllers\ComiteesController.cs" />
     <Compile Include="Controllers\ConferencesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Papers1Controller.cs" />
     <Compile Include="Controllers\PapersController.cs" />
     <Compile Include="Controllers\PCMembersController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
@@ -358,11 +357,6 @@
     <Content Include="Views\Topics\Details.cshtml" />
     <Content Include="Views\Topics\Edit.cshtml" />
     <Content Include="Views\Topics\Index.cshtml" />
-    <Content Include="Views\Papers1\Create.cshtml" />
-    <Content Include="Views\Papers1\Delete.cshtml" />
-    <Content Include="Views\Papers1\Details.cshtml" />
-    <Content Include="Views\Papers1\Edit.cshtml" />
-    <Content Include="Views\Papers1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
