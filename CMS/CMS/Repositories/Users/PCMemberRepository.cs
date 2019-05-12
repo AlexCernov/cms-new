@@ -3,6 +3,7 @@ using CMS.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
+using System.Data.Entity;
 
 namespace CMS.Repositories.Users
 {
@@ -36,10 +37,11 @@ namespace CMS.Repositories.Users
             {
                 using (var context = new DatabaseContext())
                 {
-                    pcmembers = context.PCMembers.ToList();
+
+                    pcmembers = context.PCMembers.Include(x => x.Role).ToList();
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 throw new DatabaseException("Cannot connect to Database!\n");
             }

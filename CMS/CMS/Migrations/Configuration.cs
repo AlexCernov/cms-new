@@ -11,7 +11,6 @@ namespace CMS.Migrations
         {
             AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
-            ContextKey = "CMS.Models.DatabaseContext";
         }
 
         protected override void Seed(CMS.Models.DatabaseContext context)

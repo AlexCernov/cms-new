@@ -66,7 +66,7 @@ namespace CMS.ViewModels
                 usernameExists = service.UsernameExists(entity.Username);
                 emailExists = service.EmailExists(entity.Email);
             }
-            catch
+            catch(System.Exception e)
             {
                 throw;
             }
