@@ -17,6 +17,8 @@ namespace CMS.Repositories.Users
             {
                 using (DatabaseContext context = new DatabaseContext())
                 {
+                    entity.Role = context.Roles.FirstOrDefault(x => x.Type == "Author");
+
                     context.Authors.Add(entity);
                     context.SaveChanges();
                 }

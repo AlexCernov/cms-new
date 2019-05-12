@@ -15,7 +15,7 @@ namespace CMS.Models
 
         public PCMember()
         {
-
+            this.Role = new Role();
         }
 
         [Key]
@@ -46,6 +46,9 @@ namespace CMS.Models
         [Required]
         [StringLength(100)]
         public string WebPage { get; set; }
+
+        public Role Role { get; set; }
+
 
         public virtual ICollection<Review> Reviews { get; set; }
 
