@@ -9,8 +9,8 @@ namespace CMS.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "CMS.Models.DatabaseContext";
         }
 

@@ -7,7 +7,7 @@ namespace CMS.Models
     {
         public DatabaseContext() : base("DatabaseContext")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, CMS.Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, CMS.Migrations.Configuration>());
         }
 
         public DbSet<Author> Authors { get; set; }
