@@ -1,4 +1,5 @@
-﻿using CMS.Models;
+﻿using CMS.Exceptions;
+using CMS.Models;
 using System;
 using System.Collections.Generic;
 
