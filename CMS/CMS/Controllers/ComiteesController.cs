@@ -128,5 +128,12 @@ namespace CMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Comitees/AllPCMembers
+        [HttpGet]
+        public JsonResult AllPCMembers()
+        {
+            return Json(db.PCMembers.Select(a => new { label = a.Name }), JsonRequestBehavior.AllowGet);
+        }
     }
 }
