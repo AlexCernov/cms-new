@@ -189,7 +189,6 @@
     <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
     <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
     <Compile Include="ViewModels\IDeleteEntityViewModel.cs" />
-    <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
     <Compile Include="ViewModels\CreateCallForPapersViewModel.cs" />
     <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
