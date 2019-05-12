@@ -1,6 +1,8 @@
-﻿using CMS.Models;
+﻿using CMS.Exceptions;
+using CMS.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Repositories.Entities
 {
@@ -8,22 +10,75 @@ namespace CMS.Repositories.Entities
     {
         public Conference Add(Conference entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    context.Conferences.Add(entity);
+                    context.SaveChanges();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw new DatabaseException("Cannot connect to Database!\n");
+            }
+
+            return entity;
+            
         }
 
         public Conference Delete(Conference entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    context.Conferences.Remove(entity);
+                    context.SaveChanges();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw new DatabaseException("Cannot connect to Database!\n");
+            }
+
+            return entity;
         }
 
         public IList<Conference> FindAll()
         {
-            throw new NotImplementedException();
+            IList<Conference> conferences = new List<Conference>();
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    conferences = context.Conferences.ToList();
+                
+                }
+            }
+            catch (System.Exception)
+            {
+                throw new DatabaseException("Cannot connect to Database!\n");
+            }
+            return conferences;
         }
 
-        public Conference Update(Conference enitity)
+        public Conference Update(Conference entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    context.Conferences.Remove(entity);
+                    context.SaveChanges();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw new DatabaseException("Cannot connect to Database!\n");
+            }
+
+            return entity;
         }
     }
 }

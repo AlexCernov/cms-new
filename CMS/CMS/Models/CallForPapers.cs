@@ -7,7 +7,6 @@ using System.Web.Mvc;
 namespace CMS.Models
 {
     public class CallForPapers
-
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
