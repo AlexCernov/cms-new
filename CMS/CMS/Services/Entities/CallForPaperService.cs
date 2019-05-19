@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CMS.Services.Entities
 {
-	public class CallForPaperService : IEntityRepository<CallForPapers>
+	public class CallForPaperService : IEntityService<CallForPapers>
 	{
 		private readonly IEntityRepository<CallForPapers> callForPapersRepository;
 
