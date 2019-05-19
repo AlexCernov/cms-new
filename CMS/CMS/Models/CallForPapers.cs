@@ -24,14 +24,5 @@ namespace CMS.Models
         public DateTime DeadlineAbstract { get; set; }
         [Required]
         public DateTime DeadlineProposal { get; set; }
-
-        [Required(ErrorMessage = "Please select a Topic")]
-        public int Topic_Id1 { get; set; }
-
-        public int[] ListOfTopicId { get; set; }
-
-        [StringLength(100)]
-        public string Topic_Name { get; set; }
-        public IEnumerable<SelectListItem> SelectTopic { get; set; }
-        }
+		    public virtual ICollection<Topic> Topics { get; set; }
 }

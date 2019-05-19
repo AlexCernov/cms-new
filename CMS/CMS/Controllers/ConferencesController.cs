@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS.Models;
+using CMS.Repositories.Entities;
+using CMS.Services.Entities;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
@@ -17,14 +20,21 @@ namespace CMS.Controllers
 
         // There might not be a use for all the views/methods that were automatically generated
 
-        private DatabaseContext db = new DatabaseContext();
+        private readonly ConferenceService ConferenceService;
+
+        public ConferencesController()
+        {
+            ConferenceService = new ConferenceService(new ConferenceRepository());
+        }
+
+        //private DatabaseContext db = new DatabaseContext();
 
         // GET: Conferences
         public ActionResult Index()
         {
-            return View(db.Conferences.ToList());
+            return View(ConferenceService.FindAll());
         }
-
+        /*
         // GET: Conferences/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,30 +49,69 @@ namespace CMS.Controllers
             }
             return View(conference);
         }
+        */
 
         // GET: Conferences/Create
         public ActionResult Create()
         {
-            return View();
+            
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            /*
+            CreateConferenceViewModel model = new CreateConferenceViewModel();
+            return View(model.CheckEntity(ConferenceService,entity));
+            */
+            CreateConferenceViewModel model = new CreateConferenceViewModel();
+            return View(model);
+
+        }
+
+        public ActionResult Delete()
+        {
+            if(Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            DeleteConferenceViewModel model = new DeleteConferenceViewModel();
+            return View(model);
         }
 
         // POST: Conferences/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,StartDate,EndDate,Location")] Conference conference)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Conferences.Add(conference);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                CreateConferenceViewModel model = new CreateConferenceViewModel(ModelState.IsValid, conference, ConferenceService);
+                return View(model);
             }
-
-            return View(conference);
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete( Conference conference)
+        {
+            try
+            {
+                DeleteConferenceViewModel model = new DeleteConferenceViewModel(ModelState.IsValid, conference, ConferenceService);
+                return View(model);
+            }
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
+        /*
         // GET: Conferences/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -128,5 +177,7 @@ namespace CMS.Controllers
             }
             base.Dispose(disposing);
         }
+    }
+    */
     }
 }

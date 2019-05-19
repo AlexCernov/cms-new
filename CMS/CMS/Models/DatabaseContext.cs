@@ -5,7 +5,7 @@ namespace CMS.Models
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext() : base("DatabaseContext")
+        public DatabaseContext() : base("CMSContext")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, CMS.Migrations.Configuration>());
         }

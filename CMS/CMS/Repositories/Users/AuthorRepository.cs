@@ -3,6 +3,7 @@ using CMS.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
+using System.Data.Entity;
 
 namespace CMS.Repositories.Users
 {
@@ -17,6 +18,8 @@ namespace CMS.Repositories.Users
             {
                 using (DatabaseContext context = new DatabaseContext())
                 {
+                    entity.Role = context.Roles.FirstOrDefault(x => x.Type == "Author");
+
                     context.Authors.Add(entity);
                     context.SaveChanges();
                 }
@@ -36,7 +39,7 @@ namespace CMS.Repositories.Users
             {
                 using (DatabaseContext context = new DatabaseContext())
                 {
-                    authors = context.Authors.ToList();
+                    authors = context.Authors.Include(x => x.Role).ToList();
                 }
             }
             catch (System.Exception)

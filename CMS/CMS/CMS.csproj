@@ -181,10 +181,14 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\Users\PCMemberRepository.cs" />
     <Compile Include="Services\Entities\CallForPaperService.cs" />
+    <Compile Include="Services\Entities\ConferenceService.cs" />
     <Compile Include="Services\IEntityService.cs" />
     <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Users\PCMemberService.cs" />
+    <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
+    <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
+    <Compile Include="ViewModels\IDeleteEntityViewModel.cs" />
     <Compile Include="ViewModels\CreateCallForPapersViewModel.cs" />
     <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />

@@ -48,6 +48,8 @@ namespace CMS.Models
 
         public Abstract Abstract { get; set; }
 
+        public Role Role { get; set; }
+
         public virtual ICollection<Paper> Papers { get; set; }
 
     }
