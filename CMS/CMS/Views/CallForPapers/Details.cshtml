@@ -1,4 +1,4 @@
-@model CMS.Models.CallForPapers
+@model CMS.ViewModels.DetailsCallForPapersViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,43 +11,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Acronym)
+            @Html.DisplayNameFor(model => model.callforpaper.Acronym)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Acronym)
+            @Html.DisplayFor(model => model.callforpaper.Acronym)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.callforpaper.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.callforpaper.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.DisplayNameFor(model => model.callforpaper.StartDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @Html.DisplayFor(model => model.callforpaper.StartDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DeadlineAbstract)
+            @Html.DisplayNameFor(model => model.callforpaper.DeadlineAbstract)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DeadlineAbstract)
+            @Html.DisplayFor(model => model.callforpaper.DeadlineAbstract)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DeadlineProposal)
+            @Html.DisplayNameFor(model => model.callforpaper.DeadlineProposal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DeadlineProposal)
+            @Html.DisplayFor(model => model.callforpaper.DeadlineProposal)
         </dd>
 
 		<dt>
@@ -55,27 +55,9 @@
 
 		</dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.ListOfTopicId)
-      
-			@Html.DisplayNameFor(model => model.Topic_Id1)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.ListOfTopicId)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Topic_Name)
-
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.Topic_Name)
-		</dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.callforpaper.Id })*@ |
     @Html.ActionLink("Back to List", "Index")
 </p>

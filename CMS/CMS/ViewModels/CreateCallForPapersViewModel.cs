@@ -33,19 +33,36 @@ namespace CMS.ViewModels
 			return true;
 		}
 
-		public CreateCallForPapersViewModel(bool modelState, CallForPapers callforpapers, CallForPaperService service)
+		public CreateCallForPapersViewModel(bool modelState, CallForPapers callforpaper, CallForPaperService service)
 		{
-			if (modelState)
-			{
+            if (modelState)
+            {
+                try
+                {
+                    Status = CheckEntity(service,callforpaper);
+                }
+                catch (InternetException ex)
+                {
+                    Message = ex.Message;
+                    Status = false;
+                    return;
+                }
+                catch (DatabaseException ex)
+                {
+                    Message = ex.Message;
+                    Status = false;
+                    return;
+                }
 
-				Message = " Registration successful!\n";
-				Status = true;
-			}
-			else
-			{
-				Message = " Invalid request!\n";
-				Status = false;
-			}
-		}
-	}
+                Message = " Registration successful!\n";
+                Status = true;
+            }
+            else
+            {
+                Message = " Invalid request!\n";
+                Status = false;
+            }
+        }
+
+    }
 }

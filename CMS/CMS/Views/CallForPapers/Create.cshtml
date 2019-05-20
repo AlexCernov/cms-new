@@ -67,10 +67,10 @@
 		</div>*@
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.callforpaper.Topic_Id1, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.callforpaper.Topics, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@*@Html.DropDownListFor(m => m.Topic_Id1, Model.SelectTopic, "Select Topic", new { @class = "form-control" })*@
-				@Html.ValidationMessageFor(model => model.callforpaper.Topic_Id1, "", new { @class = "text-danger" })
+				@Html.DropDownListFor(m => m.callforpaper.Topics, Model.callforpaper.Topics, "Select Topic", new { @class = "form-control" })*@
+				@Html.ValidationMessageFor(model => model.callforpaper.Topics, "", new { @class = "text-danger" })
 			</div>
 		</div>
 

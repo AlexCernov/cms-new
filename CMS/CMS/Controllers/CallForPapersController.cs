@@ -36,30 +36,7 @@ namespace CMS.Controllers
 			return View(CallForPaperService.FindAll());
 		}
 
-		//// GET: CallForPapers/Details/5
-		//public ActionResult Details(int? id)
-		//{
-		//	if (id == null)
-		//	{
-		//		return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-		//	}
-		//	CallForPapers callForPapers = CallForPaperService.FindAll().ElementAt((int)id);
-
-		//	try
-		//	{
-		//		int response;
-		//		CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService,out response);
-		//		if (response == 1)
-		//		{
-		//			return RedirectToAction("Index");
-		//		}
-		//		return View(model);
-		//	}
-		//	catch
-		//	{
-		//		return RedirectToRoute("~/Shared/Error");
-		//	}
-		//}
+		
 
 		// GET: CallForPapers/Create
 		public ActionResult Create()
@@ -71,11 +48,31 @@ namespace CMS.Controllers
 			CreateCallForPapersViewModel model = new CreateCallForPapersViewModel();
 			return View(model);
 		}
+        //GET: CallForPapers/Delete
+        public ActionResult Delete()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            DeleteCallForPapersViewModel model = new DeleteCallForPapersViewModel();
+            return View(model);
+        }
+        //GET: CallForPapers/Details
+        public ActionResult Details()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            DetailsCallForPapersViewModel model = new DetailsCallForPapersViewModel();
+            return View(model);
+        }
 
-		// POST: CallForPapers/Create
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
+        // POST: CallForPapers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal")] CallForPapers callForPapers)
 		{
@@ -89,60 +86,69 @@ namespace CMS.Controllers
 				return RedirectToRoute("~/Shared/Error");
 			}
 		}
+        // POST: CallForPapers/Delete
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(CallForPapers callforpaper)
+        {
+            try
+            {
+                DeleteCallForPapersViewModel model = new DeleteCallForPapersViewModel(ModelState.IsValid, callforpaper, CallForPaperService);
+                return View(model);
+            }
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
+        // POST: CallForPapers/Details
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(CallForPapers callforpaper)
+        {
+            try
+            {
+                DetailsCallForPapersViewModel model = new DetailsCallForPapersViewModel(ModelState.IsValid, callforpaper, CallForPaperService);
+                return View(model);
+            }
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
 
-		//     // GET: CallForPapers/Edit/5
-		//     public ActionResult Edit(int? id)
-		//     {
-		//         if (id == null)
-		//         {
-		//             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-		//         }
-		//CallForPapers callForPapers = CallForPaperService.FindAll().ElementAt((int)id);
-		//         if (callForPapers == null)
-		//         {
-		//             return HttpNotFound();
-		//         }
-		//         return View(callForPapers);
-		//     }
+        //     // GET: CallForPapers/Edit/5
+        //     public ActionResult Edit(int? id)
+        //     {
+        //         if (id == null)
+        //         {
+        //             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //         }
+        //CallForPapers callForPapers = CallForPaperService.FindAll().ElementAt((int)id);
+        //         if (callForPapers == null)
+        //         {
+        //             return HttpNotFound();
+        //         }
+        //         return View(callForPapers);
+        //     }
 
-		// POST: CallForPapers/Edit/5
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-		//     [HttpPost]
-		//     [ValidateAntiForgeryToken]
-		//     public ActionResult Edit([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal")] CallForPapers callForPapers)
-		//     {
-		//         if (ModelState.IsValid)
-		//         {
-		//             CallForPaperService.Update(callForPapers);
-		//             return RedirectToAction("Index");
-		//         }
-		//         return View(callForPapers);
-		//     }
-
-		//     // GET: CallForPapers/Delete/5
-		//     public ActionResult Delete(int? id)
-		//     {
-		//         if (id == null)
-		//         {
-		//             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-		//         }
-		//         CallForPapers callForPapers = CallForPaperService.FindAll().ElementAt((int)id);
-		//         if (callForPapers == null)
-		//         {
-		//             return HttpNotFound();
-		//         }
-		//         return View(callForPapers);
-		//     }
-
-		//     // POST: CallForPapers/Delete/5
-		//     [HttpPost, ActionName("Delete")]
-		//     [ValidateAntiForgeryToken]
-		//     public ActionResult DeleteConfirmed(int id)
-		//     {
-		//CallForPapers callForPapers = CallForPaperService.FindAll().ElementAt(id);
-		//CallForPaperService.Delete(callForPapers);
-		//         return RedirectToAction("Index");
-		//     }
-	}
+        // POST: CallForPapers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //     [HttpPost]
+        //     [ValidateAntiForgeryToken]
+        //     public ActionResult Edit([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal")] CallForPapers callForPapers)
+        //     {
+        //         if (ModelState.IsValid)
+        //         {
+        //             CallForPaperService.Update(callForPapers);
+        //             return RedirectToAction("Index");
+        //         }
+        //         return View(callForPapers);
+        //     }
+    }
 }
