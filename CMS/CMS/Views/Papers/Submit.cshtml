@@ -1,0 +1,31 @@
+﻿@model CMS.ViewModels.PaperViewModels.SubmitPaperViewModel
+
+@{
+    if (Model.Status)
+    {
+        <h2>Create</h2>
+        <p>@Model.CallForPapersId - call for papers</p>
+        using (Html.BeginForm("Submit", "Papers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <label class="btn btn-default">
+                Browse <input type="file" name="file" hidden />
+            </label>
+            <input type="hidden" name="CallForPapersId" value="@Model.CallForPapersId" />
+
+            <input type="submit" value="OK" class="btn btn-default" />
+        }
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+    else
+    {
+        <h2>Deadline passed</h2>
+        <div class="body-content">
+            <p>@Model.Message</p>
+        </div>
+    }
+}
+
+

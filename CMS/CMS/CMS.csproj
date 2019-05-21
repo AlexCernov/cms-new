@@ -164,6 +164,7 @@
     <Compile Include="Repositories\Users\PCMemberRepository.cs" />
     <Compile Include="Services\Entities\CallForPaperService.cs" />
     <Compile Include="Services\Entities\ConferenceService.cs" />
+    <Compile Include="Services\Entities\PaperService.cs" />
     <Compile Include="Services\IEntityService.cs" />
     <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
     <Compile Include="ViewModels\LoginAuthorViewModel.cs" />
     <Compile Include="ViewModels\LoginPCMemberViewModel.cs" />
+    <Compile Include="ViewModels\PaperViewModels\SubmitPaperViewModel.cs" />
     <Compile Include="ViewModels\RegisterAuthorViewModel.cs" />
     <Compile Include="ViewModels\RegisterPCMemberViewModel.cs" />
   </ItemGroup>
@@ -299,7 +301,7 @@
     <Content Include="Views\Conferences\Details.cshtml" />
     <Content Include="Views\Conferences\Edit.cshtml" />
     <Content Include="Views\Conferences\Index.cshtml" />
-    <Content Include="Views\Papers\Create.cshtml" />
+    <Content Include="Views\Papers\Submit.cshtml" />
     <Content Include="Views\Papers\Delete.cshtml" />
     <Content Include="Views\Papers\Details.cshtml" />
     <Content Include="Views\Papers\Edit.cshtml" />
@@ -326,7 +328,7 @@
     <Content Include="Views\Topics\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
