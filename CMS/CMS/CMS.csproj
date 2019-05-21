@@ -169,21 +169,21 @@
     <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Users\PCMemberService.cs" />
-    <Compile Include="ViewModels\DeleteCallForPapersViewModel.cs" />
-    <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
-    <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
-    <Compile Include="ViewModels\DetailsCallForPapersViewModel.cs" />
+    <Compile Include="ViewModels\CallForPapersViewModels\DeleteCallForPapersViewModel.cs" />
+    <Compile Include="ViewModels\ConferenceViewModels\DeleteConferenceViewModel.cs" />
+    <Compile Include="ViewModels\ConferenceViewModels\CreateConferenceViewModel.cs" />
+    <Compile Include="ViewModels\CallForPapersViewModels\DetailsCallForPapersViewModel.cs" />
     <Compile Include="ViewModels\IDetailsEntityViewModel.cs" />
     <Compile Include="ViewModels\IDeleteEntityViewModel.cs" />
-    <Compile Include="ViewModels\CreateCallForPapersViewModel.cs" />
+    <Compile Include="ViewModels\CallForPapersViewModels\CreateCallForPapersViewModel.cs" />
     <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
-    <Compile Include="ViewModels\LoginAuthorViewModel.cs" />
-    <Compile Include="ViewModels\LoginPCMemberViewModel.cs" />
+    <Compile Include="ViewModels\AuthorViewModels\LoginAuthorViewModel.cs" />
+    <Compile Include="ViewModels\PCMemberViewModels\LoginPCMemberViewModel.cs" />
     <Compile Include="ViewModels\PaperViewModels\SubmitPaperViewModel.cs" />
-    <Compile Include="ViewModels\RegisterAuthorViewModel.cs" />
-    <Compile Include="ViewModels\RegisterPCMemberViewModel.cs" />
+    <Compile Include="ViewModels\AuthorViewModels\RegisterAuthorViewModel.cs" />
+    <Compile Include="ViewModels\PCMemberViewModels\RegisterPCMemberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -329,6 +329,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="ViewModels\AbstractViewModels\" />
+    <Folder Include="ViewModels\ReviewViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

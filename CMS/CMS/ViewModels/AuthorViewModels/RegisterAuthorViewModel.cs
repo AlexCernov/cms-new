@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CMS.Exceptions;
+﻿using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Users;
+using CMS.ViewModels;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.AuthorViewModels
 {
     public class RegisterAuthorViewModel : IRegisterUserViewModel<Author>
     {

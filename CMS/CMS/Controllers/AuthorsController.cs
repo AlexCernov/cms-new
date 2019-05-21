@@ -3,6 +3,7 @@ using CMS.Repositories.Users;
 using CMS.Services;
 using CMS.Services.Users;
 using CMS.ViewModels;
+using CMS.ViewModels.AuthorViewModels;
 using System.Web.Mvc;
 
 namespace CMS.Controllers

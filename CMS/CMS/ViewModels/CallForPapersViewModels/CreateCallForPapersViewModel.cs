@@ -1,47 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CMS.Exceptions;
+﻿using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Entities;
-using CMS.Services.Users;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.CallForPapersViewModels
 {
-    public class DeleteCallForPapersViewModel : IDeleteEntityViewModel<CallForPapers>
+    public class CreateCallForPapersViewModel : ICreateEntityViewModel<CallForPapers>
     {
         public CallForPapers callforpaper;
 
-        public string Message { get; }
+        public string Message { get; set; }
         public bool Status { get; }
         public string Title { get; }
 
-        public DeleteCallForPapersViewModel()
+        public CreateCallForPapersViewModel()
         {
             Message = null;
-            Title = "Delete";
+            Title = "Create";
         }
 
         public bool CheckEntity(IEntityService<CallForPapers> service, CallForPapers entity)
         {
             try
             {
-                entity = service.Delete(entity);
+                entity = service.Add(entity);
             }
             catch
             {
                 throw;
             }
-
             return true;
         }
 
-
-        public DeleteCallForPapersViewModel(bool isValid, CallForPapers callforpaper, CallForPaperService service)
+        public CreateCallForPapersViewModel(bool modelState, CallForPapers callforpaper, CallForPaperService service)
         {
-            if (isValid)
+            if (modelState)
             {
                 try
                 {
@@ -60,7 +53,7 @@ namespace CMS.ViewModels
                     return;
                 }
 
-                Message = " Delete successful!\n";
+                Message = " Registration successful!\n";
                 Status = true;
             }
             else

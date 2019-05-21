@@ -1,53 +1,46 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
 using CMS.Models;
-using CMS.Services.Entities;
 using CMS.Repositories.Entities;
-using CMS.ViewModels;
+using CMS.Services.Entities;
+using CMS.ViewModels.CallForPapersViewModels;
+using System.Web.Mvc;
 
 namespace CMS.Controllers
 {
-	public class CallForPapersController : Controller
-	{
+    public class CallForPapersController : Controller
+    {
 
-		// THIS IS GENERATED CODE : A controller can't use DatabaseContext ( that's why we have services, so if you want to use the code bellow look at Authors or PCMembers controllers and see
-		// how things work there
+        // THIS IS GENERATED CODE : A controller can't use DatabaseContext ( that's why we have services, so if you want to use the code bellow look at Authors or PCMembers controllers and see
+        // how things work there
 
-		// There might not be a use for all the views/methods that were automatically generated
+        // There might not be a use for all the views/methods that were automatically generated
 
-		private readonly CallForPaperService CallForPaperService;
+        private readonly CallForPaperService CallForPaperService;
 
-		public CallForPapersController()
-		{
-			CallForPaperService = new CallForPaperService(new CallForPapersRepository());
-		}
+        public CallForPapersController()
+        {
+            CallForPaperService = new CallForPaperService(new CallForPapersRepository());
+        }
 
-		//private readonly Call
+        //private readonly Call
 
-		// GET: CallForPapers
-		public ActionResult Index()
-		{
-			return View(CallForPaperService.FindAll());
-		}
+        // GET: CallForPapers
+        public ActionResult Index()
+        {
+            return View(CallForPaperService.FindAll());
+        }
 
-		
 
-		// GET: CallForPapers/Create
-		public ActionResult Create()
-		{
-			if (Request.IsAuthenticated)
-			{
-				return RedirectToAction("PermissionDenied");
-			}
-			CreateCallForPapersViewModel model = new CreateCallForPapersViewModel();
-			return View(model);
-		}
+
+        // GET: CallForPapers/Create
+        public ActionResult Create()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            CreateCallForPapersViewModel model = new CreateCallForPapersViewModel();
+            return View(model);
+        }
         //GET: CallForPapers/Delete
         public ActionResult Delete()
         {
@@ -73,19 +66,19 @@ namespace CMS.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal")] CallForPapers callForPapers)
-		{
-			try
-			{
-				CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService);
-				return View(model);
-			}
-			catch (System.Exception)
-			{
-				return RedirectToRoute("~/Shared/Error");
-			}
-		}
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal")] CallForPapers callForPapers)
+        {
+            try
+            {
+                CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService);
+                return View(model);
+            }
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
+        }
         // POST: CallForPapers/Delete
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

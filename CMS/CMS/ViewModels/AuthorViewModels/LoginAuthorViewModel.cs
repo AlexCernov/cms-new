@@ -2,12 +2,12 @@
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Users;
+using CMS.ViewModels;
 using System;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Security;
-
-namespace CMS.ViewModels
+namespace CMS.ViewModels.AuthorViewModels
 {
     public class LoginAuthorViewModel : ILoginUserViewModel<Author>
     {

@@ -3,13 +3,11 @@ using CMS.Models;
 using CMS.Services;
 using CMS.Services.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Security;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.PCMemberViewModels
 {
     public class LoginPCMemberViewModel : ILoginUserViewModel<PCMember>
     {
@@ -95,9 +93,13 @@ namespace CMS.ViewModels
             try
             {
                 if (userRetrivedFromDb.Password == Crypto.Hash(entity.Password))
+                {
                     goodPassword = true;
+                }
                 else
+                {
                     goodPassword = false;
+                }
             }
             catch
             {
@@ -116,11 +118,13 @@ namespace CMS.ViewModels
         public void SetCookie(string username, bool rememberMe)
         {
             int timeout = rememberMe ? 262800 : 20; // 262800 min = 1/2 year
-            var ticket = new FormsAuthenticationTicket(username, rememberMe, timeout);
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(username, rememberMe, timeout);
             string encrypted = FormsAuthentication.Encrypt(ticket);
-            Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-            Cookie.Expires = DateTime.Now.AddMinutes(timeout);
-            Cookie.HttpOnly = true;
+            Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted)
+            {
+                Expires = DateTime.Now.AddMinutes(timeout),
+                HttpOnly = true
+            };
         }
     }
 }

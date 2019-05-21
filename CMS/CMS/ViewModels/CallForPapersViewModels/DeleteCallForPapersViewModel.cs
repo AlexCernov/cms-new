@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CMS.Exceptions;
+﻿using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Entities;
-using CMS.Services.Users;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.CallForPapersViewModels
 {
-    public class DetailsCallForPapersViewModel : IDeleteEntityViewModel<CallForPapers>
+    public class DeleteCallForPapersViewModel : IDeleteEntityViewModel<CallForPapers>
     {
         public CallForPapers callforpaper;
 
@@ -18,7 +13,7 @@ namespace CMS.ViewModels
         public bool Status { get; }
         public string Title { get; }
 
-        public DetailsCallForPapersViewModel()
+        public DeleteCallForPapersViewModel()
         {
             Message = null;
             Title = "Delete";
@@ -28,7 +23,7 @@ namespace CMS.ViewModels
         {
             try
             {
-                entity = service.FindAll().ElementAt(entity.Id);
+                entity = service.Delete(entity);
             }
             catch
             {
@@ -39,7 +34,7 @@ namespace CMS.ViewModels
         }
 
 
-        public DetailsCallForPapersViewModel(bool isValid, CallForPapers callforpaper, CallForPaperService service)
+        public DeleteCallForPapersViewModel(bool isValid, CallForPapers callforpaper, CallForPaperService service)
         {
             if (isValid)
             {

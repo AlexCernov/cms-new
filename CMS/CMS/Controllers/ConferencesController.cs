@@ -10,6 +10,7 @@ using CMS.Models;
 using CMS.Repositories.Entities;
 using CMS.Services.Entities;
 using CMS.ViewModels;
+using CMS.ViewModels.ConferenceViewModels;
 
 namespace CMS.Controllers
 {
@@ -63,6 +64,7 @@ namespace CMS.Controllers
             CreateConferenceViewModel model = new CreateConferenceViewModel();
             return View(model.CheckEntity(ConferenceService,entity));
             */
+
             CreateConferenceViewModel model = new CreateConferenceViewModel();
             return View(model);
 

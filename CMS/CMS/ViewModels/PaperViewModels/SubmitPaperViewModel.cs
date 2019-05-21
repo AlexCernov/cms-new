@@ -82,7 +82,7 @@ namespace CMS.ViewModels.PaperViewModels
                 // extract only the filename
                 string fileName = Path.GetFileName(File.FileName);
                 // store the file inside ~/App_Data/uploads folder
-                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/App_Data/uploads"), CallForPapers.Name, fileName);
+                string path = Path.Combine("/App_Data/uploads", CallForPapers.Name, fileName);
                 File.SaveAs(path);
                 return path;
             }

@@ -2,12 +2,8 @@
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.PCMemberViewModels
 {
     public class RegisterPCMemberViewModel : IRegisterUserViewModel<PCMember>
     {
@@ -46,7 +42,7 @@ namespace CMS.ViewModels
                 }
 
                 Message = " Registration successfully done.";
-                                 
+
                 Status = true;
             }
             else
@@ -66,7 +62,7 @@ namespace CMS.ViewModels
                 usernameExists = service.UsernameExists(entity.Username);
                 emailExists = service.EmailExists(entity.Email);
             }
-            catch(System.Exception e)
+            catch (System.Exception)
             {
                 throw;
             }

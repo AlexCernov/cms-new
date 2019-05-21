@@ -1,7 +1,7 @@
 ﻿using CMS.Models;
 using CMS.Repositories.Users;
 using CMS.Services.Users;
-using CMS.ViewModels;
+using CMS.ViewModels.PCMemberViewModels;
 using System.Web.Mvc;
 
 namespace CMS.Controllers
@@ -63,9 +63,8 @@ namespace CMS.Controllers
         {
             try
             {
-				int response;
 
-				LoginPCMemberViewModel model = new LoginPCMemberViewModel(ModelState.IsValid, username, password, rememberMe, PCMemberService, out response);
+                LoginPCMemberViewModel model = new LoginPCMemberViewModel(ModelState.IsValid, username, password, rememberMe, PCMemberService, out int response);
                 if (response == 1)
                 {
                     Response.Cookies.Add(model.Cookie);

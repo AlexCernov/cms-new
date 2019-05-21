@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CMS.Exceptions;
+﻿using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Entities;
-using CMS.Services.Users;
+using System.Linq;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.CallForPapersViewModels
 {
-    public class DeleteConferenceViewModel : IDeleteEntityViewModel<Conference>
+    public class DetailsCallForPapersViewModel : IDeleteEntityViewModel<CallForPapers>
     {
-        public Conference conference;
+        public CallForPapers callforpaper;
 
         public string Message { get; }
         public bool Status { get; }
         public string Title { get; }
 
-        public DeleteConferenceViewModel()
+        public DetailsCallForPapersViewModel()
         {
             Message = null;
             Title = "Delete";
         }
 
-        public bool CheckEntity(IEntityService<Conference> service, Conference entity)
+        public bool CheckEntity(IEntityService<CallForPapers> service, CallForPapers entity)
         {
             try
             {
-                entity = service.Delete(entity);
+                entity = service.FindAll().ElementAt(entity.Id);
             }
             catch
             {
@@ -38,15 +34,14 @@ namespace CMS.ViewModels
             return true;
         }
 
-        
 
-        public DeleteConferenceViewModel(bool modelState, Conference conference, ConferenceService service)
+        public DetailsCallForPapersViewModel(bool isValid, CallForPapers callforpaper, CallForPaperService service)
         {
-            if (modelState)
+            if (isValid)
             {
                 try
                 {
-                    Status = CheckEntity(service, conference);
+                    Status = CheckEntity(service, callforpaper);
                 }
                 catch (InternetException ex)
                 {
@@ -70,5 +65,6 @@ namespace CMS.ViewModels
                 Status = false;
             }
         }
+
     }
 }
