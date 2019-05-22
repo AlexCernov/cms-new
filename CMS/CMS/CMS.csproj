@@ -187,7 +187,8 @@
     <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Users\PCMemberService.cs" />
-    <Compile Include="ViewModels\CreateComiteeViewModel.cs" />
+    <Compile Include="ViewModels\ComiteeViewModels\CreateComiteeViewModel.cs" />
+    <Compile Include="ViewModels\ComiteeViewModels\DeleteComiteeViewModel.cs" />
     <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
     <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
     <Compile Include="ViewModels\ICreateEntityViewModel.cs" />

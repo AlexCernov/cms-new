@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CMS.Exceptions;
+﻿using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
 using CMS.Services.Entities;
-using CMS.Services.Users;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 
-namespace CMS.ViewModels
+namespace CMS.ViewModels.ComiteeViewModels
 {
     public class CreateComiteeViewModel : ICreateEntityViewModel<Comitee>
     {
         public Comitee Comitee { get; set; }
-        public ICollection<PCMember> PCMembers;
-        public IEnumerable<string> rawPCMembers { get; set; }
+        public ICollection<PCMember> PCMembers { get; set; }
+        public string rawPCMembers { get; set; }
 
         public string Message { get; set; }
-        public bool Status { get; set;  }
+        public bool Status { get; set; }
         public string Title { get; set; }
 
         public CreateComiteeViewModel()
@@ -35,13 +32,25 @@ namespace CMS.ViewModels
             }
             catch
             {
-                throw ;
+                throw;
             }
 
             return true;
         }
 
-        private ICollection<PCMember> collectionConverter() { throw new NotImplementedException(); }
+        private void collectionConverter(string collection) {
+            string[] members = collection.Split(',');
+            PCMembers = new List<PCMember>();
+            for (int i = 0; i < members.Length - 1; i++)
+            {
+                using (var db = new DatabaseContext())
+                {
+                    var username = members[i];
+                    var pcmember = db.PCMembers.Include("Role").FirstOrDefault(x => x.Username == username);
+                    PCMembers.Add(pcmember);
+                }
+            }
+        }
 
         public void addComitee(bool modelState, ComiteeService service)
         {
@@ -49,6 +58,7 @@ namespace CMS.ViewModels
             {
                 try
                 {
+                    collectionConverter(rawPCMembers);
                     var comitee = new Comitee(Comitee.Name, PCMembers);
                     Status = CheckEntity(service, comitee);
                 }
@@ -77,7 +87,7 @@ namespace CMS.ViewModels
 
         public CreateComiteeViewModel(bool modelState, Comitee comitee, ComiteeService service)
         {
-           
+
         }
     }
 }

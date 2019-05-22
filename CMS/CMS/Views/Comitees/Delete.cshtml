@@ -1,4 +1,4 @@
-﻿@model CMS.Models.Comitee
+﻿@model CMS.ViewModels.ComiteeViewModels.DeleteComiteeViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,19 +12,20 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.comitee.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.comitee.Name)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Delete", "Comitees", FormMethod.Post))
+    {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
+            <input type="hidden" name="comitee" value="@Model.comitee" />
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>

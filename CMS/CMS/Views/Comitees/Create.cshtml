@@ -1,4 +1,4 @@
-﻿@model CMS.ViewModels.CreateComiteeViewModel
+﻿@model CMS.ViewModels.ComiteeViewModels.CreateComiteeViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -8,10 +8,7 @@
 @section Scripts {
     <meta charset="utf-8" />
     <script>
-         function convert(terms) {
-                $("#convertPC").value = terms;
-                alert(terms);
-            }
+        
         $(function () {
 
             function split(val) {
@@ -48,7 +45,7 @@
                         // add placeholder to get the comma-and-space at the end
                         terms.push("");
                         this.value = terms.join(", ");
-                        console.log(terms);
+                        document.getElementById("convertPC").value = terms.toString();
                         return false;
                     }
                 });
@@ -94,9 +91,9 @@
             <div class="col-sm-10">
                 <a class="btn btn-primary" href="Index" role="button">Return to Comitees Page</a>
             </div>
-            <input type="hidden" id="convertPC" name="rawPCMembers" />
+            <input type="hidden" id="convertPC" name="rawPCMembers" value="a"/>
             <div class="col-sm-2">  
-                <input type="submit" value="Create" class="btn btn-primary" onclick="convert"/>
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </div>
     </div>
