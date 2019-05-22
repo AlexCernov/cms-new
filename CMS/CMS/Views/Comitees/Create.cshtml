@@ -8,6 +8,10 @@
 @section Scripts {
     <meta charset="utf-8" />
     <script>
+         function convert(terms) {
+                $("#convertPC").value = terms;
+                alert(terms);
+            }
         $(function () {
 
             function split(val) {
@@ -17,6 +21,8 @@
                 return split(term).pop();
             }
 
+           
+            
             $("#multipleAuto").bind("keydown", function (event) {
                 if (event.keyCode === $.ui.keyCode.TAB &&
                     $(this).autocomplete("instance").menu.active) {
@@ -27,7 +33,7 @@
                     minLength: 1,
                     source: function (request, response) {
                         // delegate back to autocomplete, but extract the last term
-                        $.getJSON("AllPCMembers", { term: extractLast(request.term) }, response);
+                        $.getJSON("/PCMembers/All", { term: extractLast(request.term) }, response);
                     },
                     focus: function () {
                         // prevent value inserted on focus
@@ -71,8 +77,6 @@
             </div>
         </div>
     </div>
-
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         <div class="row">
             <div class="col-sm-1">
@@ -90,8 +94,9 @@
             <div class="col-sm-10">
                 <a class="btn btn-primary" href="Index" role="button">Return to Comitees Page</a>
             </div>
+            <input type="hidden" id="convertPC" name="rawPCMembers" />
             <div class="col-sm-2">  
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" onclick="convert"/>
             </div>
         </div>
     </div>

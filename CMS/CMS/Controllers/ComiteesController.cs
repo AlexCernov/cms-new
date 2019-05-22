@@ -59,14 +59,14 @@ namespace CMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Comitee comitee)
+        public ActionResult Create([Bind(Include = "Comitee,rawPCMembers")]CreateComiteeViewModel model)
         {
             try
             {
-                CreateComiteeViewModel model = new CreateComiteeViewModel(ModelState.IsValid, comitee, service);
+                model.addComitee(ModelState.IsValid, service);
                 return View(model);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 return RedirectToRoute("~/Shared/Error");
             }

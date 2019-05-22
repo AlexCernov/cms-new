@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,12 +13,13 @@ namespace CMS.ViewModels
 {
     public class CreateComiteeViewModel : ICreateEntityViewModel<Comitee>
     {
-        public Comitee Comitee;
+        public Comitee Comitee { get; set; }
         public ICollection<PCMember> PCMembers;
+        public IEnumerable<string> rawPCMembers { get; set; }
 
-        public string Message { get; }
-        public bool Status { get; }
-        public string Title { get; }
+        public string Message { get; set; }
+        public bool Status { get; set;  }
+        public string Title { get; set; }
 
         public CreateComiteeViewModel()
         {
@@ -33,20 +35,21 @@ namespace CMS.ViewModels
             }
             catch
             {
-                throw;
+                throw ;
             }
 
             return true;
         }
 
+        private ICollection<PCMember> collectionConverter() { throw new NotImplementedException(); }
 
-
-        public CreateComiteeViewModel(bool modelState, Comitee comitee, ComiteeService service)
+        public void addComitee(bool modelState, ComiteeService service)
         {
             if (modelState)
             {
                 try
                 {
+                    var comitee = new Comitee(Comitee.Name, PCMembers);
                     Status = CheckEntity(service, comitee);
                 }
                 catch (InternetException ex)
@@ -70,6 +73,11 @@ namespace CMS.ViewModels
                 Message = " Invalid request!\n";
                 Status = false;
             }
+        }
+
+        public CreateComiteeViewModel(bool modelState, Comitee comitee, ComiteeService service)
+        {
+           
         }
     }
 }

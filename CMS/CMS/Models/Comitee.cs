@@ -6,6 +6,19 @@ namespace CMS.Models
 {
     public class Comitee
     {
+
+        public Comitee()
+        {
+
+        }
+
+        public Comitee(string Name, ICollection<PCMember> PCMembers)
+        {
+            this.Name = Name;
+            this.PCMembers = PCMembers;
+        }
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
