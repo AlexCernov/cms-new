@@ -70,7 +70,7 @@ namespace CMS.Controllers
         
         [HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal")] CallForPapers callForPapers)
+		public ActionResult Create(CallForPapers callForPapers)
 		{
 			try
 			{

@@ -46,7 +46,7 @@
 	});
 </script>*@
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create","CallForPapers",FormMethod.Post))
 {
 	@Html.AntiForgeryToken()
 

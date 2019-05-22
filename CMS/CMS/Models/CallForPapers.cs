@@ -7,6 +7,12 @@ namespace CMS.Models
 {
     public class CallForPapers
     {
+
+        public CallForPapers()
+        {
+
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

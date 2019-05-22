@@ -8,9 +8,9 @@ namespace CMS.ViewModels
 {
 	public class CreateCallForPapersViewModel : ICreateEntityViewModel<CallForPapers>
 	{
-		public CallForPapers callforpaper;
+		public CallForPapers callforpaper { get; set; }
 
-		public string Message { get; }
+        public string Message { get; }
 		public bool Status { get; }
 		public string Title { get; }
 
