@@ -4,6 +4,7 @@ using CMS.Services;
 using CMS.Services.Users;
 using CMS.ViewModels;
 using CMS.ViewModels.AuthorViewModels;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace CMS.Controllers
@@ -83,6 +84,13 @@ namespace CMS.Controllers
             return View(AuthorService.FindAll());
         }
 
+
+        // GET: Authors/GetAuthorsByUsername
+        [HttpGet]
+        public JsonResult GetAuthorsByUsername(string term)
+        {
+            return Json(AuthorService.FindAll().AsEnumerable().Where(a => a.Username.Contains(term)).Select(a => new { label = a.Username }), JsonRequestBehavior.AllowGet);
+        }
         // generated code
 
         //private DatabaseContext db = new DatabaseContext();
