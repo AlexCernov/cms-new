@@ -5,12 +5,6 @@
 }
 
 <h2>Create</h2>
-<!-- jQuery UI CSS Reference -->
-<link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
-<!-- Required jQuery and jQuery UI Javascript references -->
-<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
-
 @*<script type="text/javascript">
 	$(document).ready(function () {
 		$('#StartDate').datepicker({
@@ -54,45 +48,45 @@
 		<h4>CallForPapers</h4>
 		<hr />
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		@Html.HiddenFor(model => model.callforpaper.Id)
+		@Html.HiddenFor(model => model.Id)
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.callforpaper.Acronym, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.Acronym, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.callforpaper.Acronym, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.callforpaper.Acronym, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.Acronym, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Acronym, "", new { @class = "text-danger" })
 			</div>
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.callforpaper.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.callforpaper.Name, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.callforpaper.Name, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 			</div>
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.callforpaper.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.callforpaper.StartDate, new { htmlAttributes = new { @class = "datepicker",id="StartDate" } })
-				@Html.ValidationMessageFor(model => model.callforpaper.StartDate, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "datepicker",id="StartDate" } })
+				@Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
 			</div>
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.callforpaper.DeadlineAbstract, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.DeadlineAbstract, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.callforpaper.DeadlineAbstract, new { htmlAttributes = new { @class = "datepicker",id="DeadlineAbstract" } })
-				@Html.ValidationMessageFor(model => model.callforpaper.DeadlineAbstract, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.DeadlineAbstract, new { htmlAttributes = new { @class = "datepicker",id="DeadlineAbstract" } })
+				@Html.ValidationMessageFor(model => model.DeadlineAbstract, "", new { @class = "text-danger" })
 			</div>
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.callforpaper.DeadlineProposal, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.DeadlineProposal, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.callforpaper.DeadlineProposal, new { htmlAttributes = new { @class = "datepicker",id="DeadlineProposal" } })
-				@Html.ValidationMessageFor(model => model.callforpaper.DeadlineProposal, "", new { @class = "text-danger" })
+				@Html.EditorFor(model => model.DeadlineProposal, new { htmlAttributes = new { @class = "datepicker",id="DeadlineProposal" } })
+				@Html.ValidationMessageFor(model => model.DeadlineProposal, "", new { @class = "text-danger" })
 			</div>
 		</div>
 

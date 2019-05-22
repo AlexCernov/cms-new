@@ -3,12 +3,38 @@ using CMS.Models;
 using CMS.Services;
 using CMS.Services.Entities;
 using CMS.Exceptions;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace CMS.ViewModels
 {
 	public class CreateCallForPapersViewModel : ICreateEntityViewModel<CallForPapers>
 	{
-		public CallForPapers callforpaper { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [StringLength(10)]
+        public string Acronym { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter the issued date.")]
+        public DateTime StartDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter the issued date.")]
+        public DateTime DeadlineAbstract { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter the issued date.")]
+        public DateTime DeadlineProposal { get; set; }
+
+        public virtual ICollection<Topic> Topics { get; set; }
 
         public string Message { get; }
 		public bool Status { get; }
@@ -18,7 +44,6 @@ namespace CMS.ViewModels
 		{
 			Message = null;
 			Title = "Create";
-            //callforpaper = new CallForPapers();
 		}
 
 		public bool CheckEntity(IEntityService<CallForPapers> service, CallForPapers entity)
