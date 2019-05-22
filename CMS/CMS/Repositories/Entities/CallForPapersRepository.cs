@@ -1,55 +1,49 @@
 ﻿using CMS.Exceptions;
 using CMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Helpers;
-using System;
 
 namespace CMS.Repositories.Entities
 {
 	public class CallForPapersRepository : IEntityRepository<CallForPapers>
 	{
-		public CallForPapers Add(CallForPapers entity)
-		{
-			try
-			{
-				using (DatabaseContext context = new DatabaseContext())
-				{
-					var result = context.CallsForPapers.SingleOrDefault(c => c.Id == entity.Id);
-					if (result == null)
-					{
-						context.CallsForPapers.Add(entity);
-						context.SaveChanges();
-					}
-				}
-			}
-			catch
-			{
-				throw new DatabaseException("Cannot connect to Database!\n");
-			}
-			return entity;
-		}
+        public CallForPapers Add(CallForPapers entity)
+        {
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    context.CallsForPapers.Add(entity);
+                    context.SaveChanges();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw new DatabaseException("Cannot connect to Database!\n");
+            }
 
-		public CallForPapers Delete(CallForPapers entity)
+            return entity;
+
+        }
+
+        public CallForPapers Delete(CallForPapers entity)
 		{
-			try
-			{
-				using (DatabaseContext context = new DatabaseContext())
-				{
-					var result = context.CallsForPapers.SingleOrDefault(c => c.Id == entity.Id);
-					if (result != null)
-					{
-						context.CallsForPapers.Remove(entity);
-						context.SaveChanges();
-					}
-				}
-			}
-			catch
-			{
-				throw new DatabaseException("Cannot connect to Database!\n");
-			}
-			return entity;
-		}
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    context.CallsForPapers.Remove(entity);
+                    context.SaveChanges();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw new DatabaseException("Cannot connect to Database!\n");
+            }
+
+            return entity;
+        }
 
 		public IList<CallForPapers> FindAll()
 		{
@@ -83,7 +77,7 @@ namespace CMS.Repositories.Entities
 						result.DeadlineProposal = entity.DeadlineProposal;
 						result.Name = entity.Name;
 						result.StartDate = entity.StartDate;
-						result.Topics = entity.Topics;
+						//result.Topics = entity.Topics;
 						context.SaveChanges();
 					}
 				}

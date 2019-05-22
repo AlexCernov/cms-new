@@ -10,7 +10,7 @@ namespace CMS.ViewModels
 	{
 		public CallForPapers callforpaper;
 
-		public string Message { get; set; }
+		public string Message { get; }
 		public bool Status { get; }
 		public string Title { get; }
 
@@ -18,6 +18,7 @@ namespace CMS.ViewModels
 		{
 			Message = null;
 			Title = "Create";
+            //callforpaper = new CallForPapers();
 		}
 
 		public bool CheckEntity(IEntityService<CallForPapers> service, CallForPapers entity)
@@ -28,8 +29,8 @@ namespace CMS.ViewModels
 			}
 			catch
 			{
-				throw;
-			}
+                throw;
+            }
 			return true;
 		}
 

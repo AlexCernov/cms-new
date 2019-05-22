@@ -1,5 +1,6 @@
 ﻿using CMS.Models;
 using CMS.Repositories;
+using CMS.Repositories.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ namespace CMS.Services.Entities
 	{
 		private readonly IEntityRepository<CallForPapers> callForPapersRepository;
 
-		public CallForPaperService(IEntityRepository<CallForPapers> callForPapersRepository)
+		public CallForPaperService(CallForPapersRepository callForPapersRepository)
 		{
 			this.callForPapersRepository = callForPapersRepository;
 		}

@@ -36,8 +36,6 @@ namespace CMS.Controllers
 			return View(CallForPaperService.FindAll());
 		}
 
-		
-
 		// GET: CallForPapers/Create
 		public ActionResult Create()
 		{
@@ -78,8 +76,8 @@ namespace CMS.Controllers
 		{
 			try
 			{
-				CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService);
-				return View(model);
+                CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService);
+				return View("Create",model);
 			}
 			catch (System.Exception)
 			{

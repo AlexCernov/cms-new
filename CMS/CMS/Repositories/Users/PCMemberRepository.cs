@@ -41,7 +41,7 @@ namespace CMS.Repositories.Users
                     pcmembers = context.PCMembers.Include(x => x.Role).ToList();
                 }
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 throw new DatabaseException("Cannot connect to Database!\n");
             }

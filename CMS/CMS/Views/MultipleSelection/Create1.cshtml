@@ -1,0 +1,92 @@
+@model CMS.ViewModels.MultipleSelectionViewModel
+
+@{
+	ViewBag.Title = "Create1";
+}
+<!-- jQuery UI CSS Reference -->
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" />
+<!-- Required jQuery and jQuery UI Javascript references -->
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")"></script>
+<h2>Create1</h2>
+<script type="text/javascript">
+	$(document).ready(function () {});
+	@*$("#Topic1").change(function () {
+			$.ajax({
+				type: 'GET',
+				data{values: $('#Topic1').find("option").map(function() {return this.value;}),
+				url:@Url.Action("filterCatlevel2","MultipleSelection"),
+				success: function(result) {
+					var s = '';
+					for (var i = 0; i < result.length; i++) {
+						s += '<option value ="' + result[i].Id + '">' + result[i].Description + '</option></select>';
+					}
+					$("#Topic2").html(s);
+				}
+			});
+		});
+	});*@
+	@*$('#Topic1').change(function () {
+    //only do something if numbers are selected
+    if( $('#Topic1 :selected').length > 0){
+        //build an array of selected values
+        var selectednumbers = [];
+        $('#Topic1').multiSelect('select_all').each(function(i, selected) {
+            selectednumbers[i] = $(selected).val();
+        });
+        //post data to handler script. note the JSON.stringify call
+        $.ajax({
+            url: @Url.Action("filterCatlevel2","MultipleSelection"),
+            data: {'selectednumbers':JSON.stringify(selectednumbers)},
+            type: 'GET',
+            success: function(data) {
+              alert('Success!');
+            }
+        });
+    }*@
+});
+</script>
+
+@using (Html.BeginForm("Create1", "MultipleSelection", FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+	@*<div class="form-group">
+			@Html.LabelFor(model=>model.ListOfTopicId, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DropDownListFor(x=>x.Topic_Id1,
+				Model.SelectTopic,new { @class = "form-control chosen-select",@multiple = true })
+			</div>
+		</div>*@
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Topic1, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownListFor(m => m.CategoryIdLevel1, Model.Topic1, new { @class = "form-control", id = "Topic1", multipleclass = "form-control" })
+			@Html.ValidationMessageFor(model => model.Topic1, "", new { @class = "text-danger" })
+		</div>
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.Topic2, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.DropDownListFor(m => m.CategoryIdLevel2, Model.Topic2, new { @class = "form-control", id = "Topic2" })
+			@Html.ValidationMessageFor(model => model.Topic2, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="Create" class="btn btn-default" />
+		</div>
+	</div>
+	<br />
+}
+
+<script>
+	$('.chosen-select').chosen();
+</script>
+
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

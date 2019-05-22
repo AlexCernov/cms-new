@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Web.Mvc;
 
 namespace CMS.Models
 {
@@ -18,11 +17,17 @@ namespace CMS.Models
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Enter the issued date.")]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Enter the issued date.")]
+        [DataType(DataType.Date)]
         public DateTime DeadlineAbstract { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Enter the issued date.")]
+        [DataType(DataType.Date)]
         public DateTime DeadlineProposal { get; set; }
 
 		public virtual ICollection<Topic> Topics { get; set; }
