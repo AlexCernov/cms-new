@@ -18,16 +18,16 @@ namespace CMS.Models
         [StringLength(100)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Enter the issued date.")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter the issued date.")]
         public DateTime StartDate { get; set; }
 
-        [Required(ErrorMessage = "Enter the issued date.")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter the issued date.")]
         public DateTime DeadlineAbstract { get; set; }
 
-        [Required(ErrorMessage = "Enter the issued date.")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Enter the issued date.")]
         public DateTime DeadlineProposal { get; set; }
 
 		public virtual ICollection<Topic> Topics { get; set; }
