@@ -6,57 +6,47 @@
 }
 
 @section Scripts {
-<meta charset="utf-8" />
-    <script type="text/javascript">
-        var items;
-        $.getJSON("AllPCMembers", function (json) {
-            items = json;
-        });
-        console.log(items);
-        $('#search').autocomplete({
-        minLength: 0,
-        source: function (request, response) {
-            var term = request.term;
+    <meta charset="utf-8" />
+    <script>
+        $(function () {
 
-            // substring of new string (only when a comma is in string)
-            if (term.indexOf(', ') > 0) {
-                var index = term.lastIndexOf(', ');
-                term = term.substring(index + 2);
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+            function extractLast(term) {
+                return split(term).pop();
             }
 
-            // regex to match string entered with start of suggestion strings
-            var re = $.ui.autocomplete.escapeRegex(term);
-            var matcher = new RegExp('^' + re, 'i');
-            var regex_validated_array = $.grep(items, function (item, index) {
-                return matcher.test(item);
-            });
-
-            // pass array `regex_validated_array ` to the response and 
-            // `extractLast()` which takes care of the comma separation
-
-            response($.ui.autocomplete.filter(regex_validated_array, 
-                 extractLast(term)));
-        },
-        focus: function () {
-            return false;
-        },
-        select: function (event, ui) {
-            var terms = split(this.value);
-            terms.pop();
-            terms.push(ui.item.value);
-            terms.push('');
-            this.value = terms.join(', ');
-            return false;
-        }
-    });
-
-    function split(val) {
-        return val.split(/,\s*/);
-    }
-
-    function extractLast(term) {
-        return split(term).pop();
-    }
+            $("#multipleAuto").bind("keydown", function (event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+                .autocomplete({
+                    minLength: 1,
+                    source: function (request, response) {
+                        // delegate back to autocomplete, but extract the last term
+                        $.getJSON("AllPCMembers", { term: extractLast(request.term) }, response);
+                    },
+                    focus: function () {
+                        // prevent value inserted on focus
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        var terms = split(this.value);
+                        // remove the current input
+                        terms.pop();
+                        // add the selected item
+                        terms.push(ui.item.value);
+                        // add placeholder to get the comma-and-space at the end
+                        terms.push("");
+                        this.value = terms.join(", ");
+                        console.log(terms);
+                        return false;
+                    }
+                });
+        });
     </script>
 }
 
@@ -64,33 +54,47 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div>
+<div>
+    <div class="form-group">
+        <div class="row">
+            <h2>Comitee Creation Page</h2>
+        </div>
+    </div>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="row">
             @Html.LabelFor(model => model.Comitee.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.Comitee.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Comitee.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.PCMember.Name, htmlAttributes: new { @name = " PCMember ", @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input id="search" size="100" />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-1">
+                <label class="col-form-label-sm">Enter the PCMembers:</label>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-1 col-md-9 col-sm-11">
+                <input class="form-control col-md-10" id="multipleAuto">
             </div>
         </div>
     </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-10">
+                <a class="btn btn-primary" href="Index" role="button">Return to Comitees Page</a>
+            </div>
+            <div class="col-sm-2">  
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

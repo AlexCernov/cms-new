@@ -12,11 +12,27 @@
     <title>@ViewBag.Title - EasierChair</title>
     <style>
         .navbar-nav > li > .dropdown-menu {
-            background-color: #000000;
+            background-color: #222222 !important;
+        }
+        .btn-primary, .btn-primary:hover, .btn-primary:visited {
+            background-color: #222222 !important;
+        }
+        .btn-primary:active {
+            background-color:#000000 !important;
+        }
+        .ui-helper-hidden-accessible {
+            display: none;
+        }
+        ul {
+            list-style-type: none;
+            width: 200px;
         }
 
-        .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-            background-color: #000000 !important;
+        li {
+            text-decoration-color: aliceblue;
+        }
+        li:hover {
+            background-color: dodgerblue;
         }
     </style>
 </head>

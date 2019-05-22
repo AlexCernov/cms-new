@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS.Models;
+using CMS.Services.Entities;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
@@ -18,6 +20,7 @@ namespace CMS.Controllers
 
         // There might not be a use for all the views/methods that were automatically generated
         private DatabaseContext db = new DatabaseContext();
+        private ComiteeService service;
 
         // GET: Comitees
         public ActionResult Index()
@@ -43,7 +46,12 @@ namespace CMS.Controllers
         // GET: Comitees/Create
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("PermissionDenied");
+            }
+            CreateComiteeViewModel model = new CreateComiteeViewModel();
+            return View(model);
         }
 
         // POST: Comitees/Create
@@ -51,16 +59,17 @@ namespace CMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Comitee comitee)
+        public ActionResult Create(Comitee comitee)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Comitees.Add(comitee);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                CreateComiteeViewModel model = new CreateComiteeViewModel(ModelState.IsValid, comitee, service);
+                return View(model);
             }
-
-            return View(comitee);
+            catch (System.Exception)
+            {
+                return RedirectToRoute("~/Shared/Error");
+            }
         }
 
         // GET: Comitees/Edit/5
@@ -97,16 +106,12 @@ namespace CMS.Controllers
         // GET: Comitees/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("PermissionDenied");
             }
-            Comitee comitee = db.Comitees.Find(id);
-            if (comitee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comitee);
+            DeleteConferenceViewModel model = new DeleteConferenceViewModel();
+            return View(model);
         }
 
         // POST: Comitees/Delete/5
@@ -131,9 +136,11 @@ namespace CMS.Controllers
 
         // GET: Comitees/AllPCMembers
         [HttpGet]
-        public JsonResult AllPCMembers()
+        public JsonResult AllPCMembers(string term)
         {
-            return Json(db.PCMembers.Select(a => new { label = a.Name }), JsonRequestBehavior.AllowGet);
+            return Json(db.PCMembers.Where(a => a.Username.Contains(term)).Select(a => new { label = a.Username }), JsonRequestBehavior.AllowGet);
         }
+
+
     }
 }

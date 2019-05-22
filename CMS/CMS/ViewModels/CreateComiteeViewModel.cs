@@ -13,7 +13,6 @@ namespace CMS.ViewModels
     public class CreateComiteeViewModel : ICreateEntityViewModel<Comitee>
     {
         public Comitee Comitee;
-        public PCMember PCMember;
         public ICollection<PCMember> PCMembers;
 
         public string Message { get; }
