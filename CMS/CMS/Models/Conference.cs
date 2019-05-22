@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace CMS.Models
 {
@@ -19,9 +20,16 @@ namespace CMS.Models
         [DataType(DataType.DateTime)]
         [Required]
         public DateTime EndDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Required]
+        public DateTime BiddingDeadline { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Location { get; set; }
         public Comitee Comitee { get; set; }
+
+        public virtual ICollection<Author> Authors { get; set; }
     }
 }

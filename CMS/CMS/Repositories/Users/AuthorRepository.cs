@@ -32,6 +32,20 @@ namespace CMS.Repositories.Users
             return entity;
         }
 
+        public Author FindByID(int ID)
+        {
+            IList<Author> authors = FindAll();
+
+            return authors.SingleOrDefault(x => x.Id == ID);
+        }
+
+        public int FindIDByUsername(string username)
+        {
+            IList<Author> authors = FindAll();
+            Author author = authors.SingleOrDefault(x => x.Username == username);
+            return author.Id;
+        }
+
         public IList<Author> FindAll()
         {
             IList<Author> authors = new List<Author>();

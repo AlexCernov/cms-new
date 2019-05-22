@@ -8,7 +8,7 @@ namespace CMS.Services.Entities
 {
     public class ConferenceService : IEntityService<Conference>
     {
-        private readonly IEntityRepository<Conference> conferenceRepository;
+        private readonly ConferenceRepository conferenceRepository;
 
 		public ConferenceService(ConferenceRepository conferenceRepository)
 		{
@@ -34,6 +34,12 @@ namespace CMS.Services.Entities
         {
             return conferenceRepository.Update(entity);
         }
-        
+
+        public IList<Conference> FindAllConferencesWhereAMemberExists(int pcMemberID)
+        {
+            return conferenceRepository.FindAllConferencesWhereAMemberExists(pcMemberID);
+        }
+
+
     }
 }

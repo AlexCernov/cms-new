@@ -52,5 +52,6 @@ namespace CMS.Models
 
         public virtual ICollection<Paper> Papers { get; set; }
 
+        public virtual ICollection<Conference> Conferences { get; set; }
     }
 }

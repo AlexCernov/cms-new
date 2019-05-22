@@ -68,7 +68,7 @@ namespace CMS.Controllers
                 if (response == 1)
                 {
                     Response.Cookies.Add(model.Cookie);
-                    return RedirectToAction("Index");//we want to load a new page with new url, not just rendering the view
+                    return RedirectToAction("Index", new { ID = model.ID });//we want to load a new page with new url, not just rendering the view
                 }
                 return View(model);
             }
@@ -79,14 +79,11 @@ namespace CMS.Controllers
         }
 
 
-        // POST : PCMember/Register
-
-
-
         // GET: PCMembers
-        public ActionResult Index()
+        public ActionResult Index(int? ID)
         {
-            return View(PCMemberService.FindAll());
+            IndexPCMemberViewModel model = new IndexPCMemberViewModel(ID.GetValueOrDefault(), PCMemberService);
+            return View(model);
         }
 
         //// GET: PCMembers/Details/5

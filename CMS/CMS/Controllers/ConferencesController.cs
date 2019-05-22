@@ -31,9 +31,9 @@ namespace CMS.Controllers
         //private DatabaseContext db = new DatabaseContext();
 
         // GET: Conferences
-        public ActionResult Index()
+        public ActionResult Index(int? ID)
         {
-            return View(ConferenceService.FindAll());
+            return View(ConferenceService.FindAllConferencesWhereAMemberExists(ID.GetValueOrDefault()));
         }
         /*
         // GET: Conferences/Details/5

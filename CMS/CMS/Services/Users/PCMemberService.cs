@@ -25,6 +25,16 @@ namespace CMS.Services.Users
 
         }
 
+        public PCMember FindByID(int ID)
+        {
+            return pcmemberRepository.FindByID(ID);
+        }
+
+        public int FindID(string username)
+        {
+            return pcmemberRepository.FindIDByUsername(username);
+        }
+
         public PCMember FindByUsername(string username)
         {
             return pcmemberRepository.FindByUsername(username);

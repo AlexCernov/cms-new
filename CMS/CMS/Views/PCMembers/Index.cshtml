@@ -1,21 +1,37 @@
-﻿@model IEnumerable<CMS.Models.PCMember>
+﻿@model CMS.ViewModels.PCMemberViewModels.IndexPCMemberViewModel
 
 
 
 @{
-                /**/
-
-                ViewBag.Title = "Index";
+    ViewBag.Title = "Member Page";
 }
 
-<h2>Index</h2>
+<head>
+    <style>
+        .upper {
+            display: flex;
+            flex-direction: row;
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        .upper h2 {
+            flex: 0.01 0 auto;
+        }
+    </style>
+</head>
 
-<input type="button" value="Conferences" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","conferences") + "'");" />
+<body>
+    <div class="upper">
+      <h2> Welcome, </h2>
+      <h2> @Model.Username </h2>
+       
+    </div>
 
-<input type="button" value="Comitees" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","comitees") + "'");" />
+    <hr style="border: 2px solid black;"/> 
 
-<input type="button" value="Reviews" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","reviews") + "'");" />
+    <input type="button" value="Conferences" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","conferences") + "/Index/" + @Model.ID + "'");" />
+
+    <input type="button" value="Comitees" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","comitees") + "'");" />
+
+    <input type="button" value="Reviews" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","reviews") + "'");" />
+
+</body>

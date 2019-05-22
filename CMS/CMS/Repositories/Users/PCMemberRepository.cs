@@ -30,6 +30,20 @@ namespace CMS.Repositories.Users
             return entity;
         }
 
+        public PCMember FindByID(int ID)
+        {
+            IList<PCMember> pcmembers = FindAll();
+
+            return pcmembers.SingleOrDefault(x => x.Id == ID);
+        }
+
+        public int FindIDByUsername(string username)
+        {
+            IList<PCMember> pCMembers = FindAll();
+            PCMember member = pCMembers.SingleOrDefault(x => x.Username == username);
+            return member.Id;
+        }
+
         public IList<PCMember> FindAll()
         {
             IList<PCMember> pcmembers = new List<PCMember>();

@@ -180,6 +180,7 @@
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
     <Compile Include="ViewModels\AuthorViewModels\LoginAuthorViewModel.cs" />
+    <Compile Include="ViewModels\PCMemberViewModels\IndexPCMemberViewModel.cs" />
     <Compile Include="ViewModels\PCMemberViewModels\LoginPCMemberViewModel.cs" />
     <Compile Include="ViewModels\PaperViewModels\SubmitPaperViewModel.cs" />
     <Compile Include="ViewModels\AuthorViewModels\RegisterAuthorViewModel.cs" />

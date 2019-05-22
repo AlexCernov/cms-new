@@ -12,5 +12,7 @@ namespace CMS.Repositories
         T FindByUsername(string username);
         T FindByEmail(string email);
         IList<T> FindAll();
+        T FindByID(int ID);
+        int FindIDByUsername(string username);
     }
 }

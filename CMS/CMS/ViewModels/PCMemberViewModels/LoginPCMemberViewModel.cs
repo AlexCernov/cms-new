@@ -13,6 +13,7 @@ namespace CMS.ViewModels.PCMemberViewModels
     {
         public string Username;
         public string Password;
+        public int ID; 
         public bool RememberMe;
 
         public HttpCookie Cookie;
@@ -42,6 +43,7 @@ namespace CMS.ViewModels.PCMemberViewModels
                     {
                         Username = username;
                         Password = "";//do not expose password
+                        ID = service.FindID(username);
 
                         returnValue = 1;
                         return;

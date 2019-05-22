@@ -12,6 +12,8 @@ namespace CMS.Services
         bool UsernameExists(string username);
         bool EmailExists(string email);
         T FindByUsername(string username);
+        T FindByID(int ID);
+        int FindID(string username);
         IList<T> FindAll();
     }
 }

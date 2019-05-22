@@ -31,10 +31,20 @@ namespace CMS.Services.Users
             return authorRepository.FindByUsername(username);
         }
 
+        public int FindID(string username)
+        {
+            return authorRepository.FindIDByUsername(username);
+        }
+
         public bool UsernameExists(string username)
         {
-			return authorRepository.FindByUsername(username) != null;
+            return authorRepository.FindByUsername(username) != null;
 
+        }
+
+        public Author FindByID(int ID)
+        {
+            return authorRepository.FindByID(ID);
         }
 
         public bool EmailExists(string email)
