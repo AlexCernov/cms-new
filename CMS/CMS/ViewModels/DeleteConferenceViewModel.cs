@@ -10,13 +10,31 @@ using CMS.Services.Users;
 
 namespace CMS.ViewModels
 {
-    public class DeleteConferenceViewModel : IDeleteEntityViewModel<Conference>
+    public class DeleteConferenceViewModel 
     {
-        public Conference conference;
+        public Conference conference { get; set; }
 
         public string Message { get; }
         public bool Status { get; }
         public string Title { get; }
+
+        public DeleteConferenceViewModel(int id, IEntityService<Conference> conferenceService)
+        {
+            conference = conferenceService.FindById(id);
+            DeleteConference(conference, conferenceService);
+        }
+
+        private void DeleteConference(Conference conference, IEntityService<Conference> conferenceService)
+        {
+            
+            conferenceService.Delete(conference);
+        }
+
+        /*
+        public DeleteConferenceViewModel(Conference conference)
+        {
+            this.conference = conference;
+        }
 
         public DeleteConferenceViewModel()
         {
@@ -69,6 +87,6 @@ namespace CMS.ViewModels
                 Message = " Invalid request!\n";
                 Status = false;
             }
-        }
+        }*/
     }
 }

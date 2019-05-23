@@ -140,26 +140,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abstract.cs" />
     <Compile Include="Models\Author.cs" />
-    <Compile Include="Models\CallForPaper.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CallForPapers.cs" />
-    <Compile Include="Models\DatabaseContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DatabaseContext.cs" />
-    <Compile Include="Models\DatabaseContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatabaseContext1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Comitee.cs" />
@@ -180,18 +162,17 @@
     <Compile Include="Repositories\IEntityRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\Users\PCMemberRepository.cs" />
-    <Compile Include="Services\Entities\CallForPaperService.cs" />
     <Compile Include="Services\Entities\ConferenceService.cs" />
+    <Compile Include="Services\Entities\CallForPaperService.cs" />
     <Compile Include="Services\IEntityService.cs" />
     <Compile Include="Services\Users\AuthorService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Users\PCMemberService.cs" />
-    <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
-    <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
-    <Compile Include="ViewModels\IDeleteEntityViewModel.cs" />
-    <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
     <Compile Include="ViewModels\CreateCallForPapersViewModel.cs" />
+    <Compile Include="ViewModels\CreateConferenceViewModel.cs" />
+    <Compile Include="ViewModels\DeleteConferenceViewModel.cs" />
     <Compile Include="ViewModels\ICreateEntityViewModel.cs" />
+    <Compile Include="ViewModels\IDeleteEntityViewModel.cs" />
     <Compile Include="ViewModels\ILoginUserViewModel.cs" />
     <Compile Include="ViewModels\IRegisterUserViewModel.cs" />
     <Compile Include="ViewModels\LoginAuthorViewModel.cs" />
@@ -209,16 +190,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DatabaseContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DatabaseContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-      <LastGenOutput>DatabaseContext1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -250,13 +221,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <EntityDeploy Include="Models\DatabaseContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DatabaseContext.edmx.diagram">
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\globalize.js" />
     <Content Include="Scripts\globalize\currency.js" />

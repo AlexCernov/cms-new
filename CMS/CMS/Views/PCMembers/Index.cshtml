@@ -1,5 +1,4 @@
-﻿@model IEnumerable<CMS.Models.PCMember>
-
+@model IEnumerable<CMS.Models.PCMember>
 
 
 @{
@@ -10,12 +9,10 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-<input type="button" value="Conferences" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","conferences") + "'");" />
 
-<input type="button" value="Comitees" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","comitees") + "'");" />
+<input type="button" value="My conferences" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","conferences") + "'");" />
 
-<input type="button" value="Reviews" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","reviews") + "'");" />
+<input type="button" value="My comitees" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","comitees") + "'");" />
+
+<input type="button" value="My reviews" class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("index","reviews") + "'");" />

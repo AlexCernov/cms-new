@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using CMS.Exceptions;
 using CMS.Models;
 using CMS.Services;
@@ -17,8 +18,9 @@ namespace CMS.ViewModels
         public string Message { get; }
         public bool Status { get; }
         public string Title { get; }
+        public IEnumerable<SelectListItem> Comitees { get; }
 
-        public CreateConferenceViewModel()
+    public CreateConferenceViewModel()
         {
             Message = null;
             Title = "Create";

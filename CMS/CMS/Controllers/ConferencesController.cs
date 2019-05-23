@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -68,20 +68,39 @@ namespace CMS.Controllers
 
         }
 
-        public ActionResult Delete()
+        
+
+        
+        public ActionResult Delete(int id)
         {
-            if(Request.IsAuthenticated)
+            if (id == null)
             {
-                return RedirectToAction("PermissionDenied");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DeleteConferenceViewModel model = new DeleteConferenceViewModel();
+            var conference = ConferenceService.FindById(id);
+            if (conference == null)
+            {
+                return HttpNotFound();
+            }
+            DeleteConferenceViewModel model = new DeleteConferenceViewModel(id,ConferenceService);
             return View(model);
+            
+        }
+
+        // POST: Trips/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            DeleteConferenceViewModel model = new DeleteConferenceViewModel(id, ConferenceService);
+            return RedirectToAction("Index");
         }
 
         // POST: Conferences/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,StartDate,EndDate,Location")] Conference conference)
@@ -97,20 +116,7 @@ namespace CMS.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete( Conference conference)
-        {
-            try
-            {
-                DeleteConferenceViewModel model = new DeleteConferenceViewModel(ModelState.IsValid, conference, ConferenceService);
-                return View(model);
-            }
-            catch (System.Exception)
-            {
-                return RedirectToRoute("~/Shared/Error");
-            }
-        }
+       
         /*
         // GET: Conferences/Edit/5
         public ActionResult Edit(int? id)

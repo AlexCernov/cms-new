@@ -11,10 +11,12 @@ namespace CMS.Services
 
         T Add(T entity);
 
-        T Delete(T entity);
+        void Delete(T entity);
 
         T Update(T enitity);
 
         IList<T> FindAll();
+
+        T FindById(int? id);
     }
 }

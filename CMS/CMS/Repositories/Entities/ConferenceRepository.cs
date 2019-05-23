@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CMS.Repositories.Entities
 {
-    public class ConferenceRepository : IEntityRepository<Conference>
+    public class ConferenceRepository 
     {
         public Conference Add(Conference entity)
         {
@@ -27,22 +27,23 @@ namespace CMS.Repositories.Entities
             
         }
 
-        public Conference Delete(Conference entity)
+        public void Delete(Conference entity)
         {
             try
             {
                 using (DatabaseContext context = new DatabaseContext())
                 {
+                    context.Conferences.Attach(entity);
                     context.Conferences.Remove(entity);
                     context.SaveChanges();
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 throw new DatabaseException("Cannot connect to Database!\n");
             }
 
-            return entity;
+            
         }
 
         public IList<Conference> FindAll()
@@ -76,6 +77,25 @@ namespace CMS.Repositories.Entities
             catch (System.Exception)
             {
                 throw new DatabaseException("Cannot connect to Database!\n");
+            }
+
+            return entity;
+        }
+
+        public Conference FindById(int? id)
+        {
+            Conference entity;
+            try
+            {
+                using (DatabaseContext context = new DatabaseContext())
+                {
+                    entity = context.Conferences.FirstOrDefault(x => x.Id == id);
+                } 
+            }
+            catch (System.Exception e)
+            {
+               // Logger.Info(e.Message);
+                throw new DatabaseException("Cannot connect to database!\n");
             }
 
             return entity;

@@ -16,5 +16,7 @@ namespace CMS.Repositories
 
         IList<T> FindAll();
 
+       
+
     }
 }
