@@ -4,98 +4,161 @@
 	ViewBag.Title = "Create";
 }
 
+@*@section Scripts {
+	<meta charset="utf-8" />
+	<script>
+
+		$(function () {
+			function split(val) {
+				return val.split(/,\s*/);
+			}
+			function extractLast(term) {
+				return split(term).pop();
+			}
+
+
+			$("#multipleAuto").bind("keydown", function (event) {
+				if (event.keyCode === $.ui.keyCode.TAB &&
+					$(this).autocomplete("instance").menu.active) {
+					event.preventDefault();
+				}
+			})
+				.autocomplete({
+					minLength: 1,
+					source: function (request, response) {
+						// delegate back to autocomplete, but extract the last term
+						$.getJSON("/Topics/All", { term: extractLast(request.term) }, response);
+					},
+					focus: function () {
+						// prevent value inserted on focus
+						return false;
+					},
+					select: function (event, ui) {
+						var terms = split(this.value);
+						// remove the current input
+						terms.pop();
+						// add the selected item
+						terms.push(ui.item.value);
+						// add placeholder to get the comma-and-space at the end
+						terms.push("");
+						this.value = terms.join(", ");
+						document.getElementById("convertTopic").value = terms.toString();
+						return false;
+					}
+				});
+		});
+	</script>
+}*@
+
 <h2>Create</h2>
 @*<script type="text/javascript">
-	$(document).ready(function () {
-		$('#StartDate').datepicker({
-			dateFormat: "dd/mm/yy",
-			showStatus: true,
-			showWeeks: true,
-			currentText: 'Now',
-			autoSize: true,
-			gotoCurrent: true,
-			showAnim: 'blind',
-			highlightWeek: true
+		$(document).ready(function () {
+			$('#StartDate').datepicker({
+				dateFormat: "dd/mm/yy",
+				showStatus: true,
+				showWeeks: true,
+				currentText: 'Now',
+				autoSize: true,
+				gotoCurrent: true,
+				showAnim: 'blind',
+				highlightWeek: true
+			});
+			$('#DeadlineAbstract').datepicker({
+				dateFormat: "dd/mm/yy",
+				showStatus: true,
+				showWeeks: true,
+				currentText: 'Now',
+				autoSize: true,
+				gotoCurrent: true,
+				showAnim: 'blind',
+				highlightWeek: true
+			});
+			$('#DeadLineProposal').datepicker({
+				dateFormat: "dd/mm/yy",
+				showStatus: true,
+				showWeeks: true,
+				currentText: 'Now',
+				autoSize: true,
+				gotoCurrent: true,
+				showAnim: 'blind',
+				highlightWeek: true
+			});
 		});
-		$('#DeadlineAbstract').datepicker({
-			dateFormat: "dd/mm/yy",
-			showStatus: true,
-			showWeeks: true,
-			currentText: 'Now',
-			autoSize: true,
-			gotoCurrent: true,
-			showAnim: 'blind',
-			highlightWeek: true
-		});
-		$('#DeadLineProposal').datepicker({
-			dateFormat: "dd/mm/yy",
-			showStatus: true,
-			showWeeks: true,
-			currentText: 'Now',
-			autoSize: true,
-			gotoCurrent: true,
-			showAnim: 'blind',
-			highlightWeek: true
-		});
-	});
-</script>*@
+	</script>*@
 
-@using (Html.BeginForm("Create","CallForPapers",FormMethod.Post))
+@using (Html.BeginForm("Create", "CallForPapers", FormMethod.Post))
 {
 	@Html.AntiForgeryToken()
 
-	<div class="form-horizontal">
-		<h4>CallForPapers</h4>
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		@Html.HiddenFor(model => model.Id)
+<div class="form-horizontal">
+	<h4>CallForPapers</h4>
+	<hr />
+	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	@Html.HiddenFor(model => model.Id)
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.Acronym, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.Acronym, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.Acronym, "", new { @class = "text-danger" })
-			</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.Acronym, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Acronym, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Acronym, "", new { @class = "text-danger" })
 		</div>
+	</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-			</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 		</div>
+	</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "datepicker",id="StartDate" } })
-				@Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-			</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "datepicker", id = "StartDate" } })
+			@Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
 		</div>
+	</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.DeadlineAbstract, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.DeadlineAbstract, new { htmlAttributes = new { @class = "datepicker",id="DeadlineAbstract" } })
-				@Html.ValidationMessageFor(model => model.DeadlineAbstract, "", new { @class = "text-danger" })
-			</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.DeadlineAbstract, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.DeadlineAbstract, new { htmlAttributes = new { @class = "datepicker", id = "DeadlineAbstract" } })
+			@Html.ValidationMessageFor(model => model.DeadlineAbstract, "", new { @class = "text-danger" })
 		</div>
+	</div>
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.DeadlineProposal, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.DeadlineProposal, new { htmlAttributes = new { @class = "datepicker",id="DeadlineProposal" } })
-				@Html.ValidationMessageFor(model => model.DeadlineProposal, "", new { @class = "text-danger" })
-			</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.DeadlineProposal, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.DeadlineProposal, new { htmlAttributes = new { @class = "datepicker", id = "DeadlineProposal" } })
+			@Html.ValidationMessageFor(model => model.DeadlineProposal, "", new { @class = "text-danger" })
 		</div>
+	</div>
 
-		<div class="form-group">
+	<div class="form-group">
+		<div class="row">
+			<div class="control-label col-md-2">
+				<label class="col-form-label">Enter the Topics:</label>
+			</div>
 			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Create" class="btn btn-default" />
+				<input class="form-control col-md-10" id="multipleAuto">
 			</div>
 		</div>
 	</div>
+
+	<div class="form-group">
+		<div class="row">
+			<div class="col-sm-10">
+				<a class="btn btn-primary" href="Index" role="button">Return to CallForPapers Page</a>
+			</div>
+			<input type="hidden" id="convertTopic" name="rawTopics" value="a" />
+			<div class="col-sm-2">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+</div>
 }
 
 <div>

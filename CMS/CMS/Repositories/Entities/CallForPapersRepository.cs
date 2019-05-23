@@ -77,7 +77,7 @@ namespace CMS.Repositories.Entities
 						result.DeadlineProposal = entity.DeadlineProposal;
 						result.Name = entity.Name;
 						result.StartDate = entity.StartDate;
-						//result.Topics = entity.Topics;
+						result.Topics = entity.Topics;
 						context.SaveChanges();
 					}
 				}

@@ -7,8 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS.Models;
-using CMS.Services.Entities;
 using CMS.Repositories.Entities;
+using CMS.Services.Entities;
 using CMS.ViewModels;
 
 namespace CMS.Controllers
@@ -27,8 +27,6 @@ namespace CMS.Controllers
 		{
 			CallForPaperService = new CallForPaperService(new CallForPapersRepository());
 		}
-
-		//private readonly Call
 
 		// GET: CallForPapers
 		public ActionResult Index()
@@ -75,16 +73,14 @@ namespace CMS.Controllers
 			try
 			{
                 CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService);
-				return View("Create",model);
+				return View(model);
 			}
 			catch (System.Exception)
 			{
 				return RedirectToRoute("~/Shared/Error");
 			}
 		}
-        // POST: CallForPapers/Delete
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(CallForPapers callforpaper)
@@ -99,9 +95,7 @@ namespace CMS.Controllers
                 return RedirectToRoute("~/Shared/Error");
             }
         }
-        // POST: CallForPapers/Details
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Details(CallForPapers callforpaper)

@@ -13,6 +13,12 @@ namespace CMS.Models
 
         }
 
+        public CallForPapers(string Acronym, ICollection<Topic> Topics)
+        {
+            this.Acronym = Acronym;
+            this.Topics = Topics;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
