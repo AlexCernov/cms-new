@@ -1,19 +1,159 @@
 ﻿@model CMS.ViewModels.PaperViewModels.SubmitPaperViewModel
-
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+            function extractLast(term) {
+                return split(term).pop();
+            }
+            $("#AuthorsAutoComplete").bind("keydown", function (event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+                .autocomplete({
+                    minLength: 1,
+                    source: function (request, response) {
+                        // delegate back to autocomplete, but extract the last term
+                        $.getJSON("/Authors/GetAuthorsByUsername", { term: extractLast(request.term) }, response);
+                    },
+                    focus: function () {
+                        // prevent value inserted on focus
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        var terms = split(this.value);
+                        // remove the current input
+                        terms.pop();
+                        // add the selected item
+                        terms.push(ui.item.value);
+                        // add placeholder to get the comma-and-space at the end
+                        terms.push("");
+                        this.value = terms.join(", ");
+                        console.log(terms);
+                        return false;
+                    }
+                });
+             $("#AbstractsAutoComplete").bind("keydown", function (event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+                .autocomplete({
+                    minLength: 1,
+                    source: function (request, response) {
+                        // delegate back to autocomplete, but extract the last term
+                        $.getJSON("/Abstracts/GetAllAbstractByName", { term: extractLast(request.term) }, response);
+                    },
+                    focus: function () {
+                        // prevent value inserted on focus
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        var terms = split(this.value);
+                        // remove the current input
+                        terms.pop();
+                        // add the selected item
+                        terms.push(ui.item.value);
+                        // add placeholder to get the comma-and-space at the end
+                        terms.push("");
+                        this.value = terms.join(", ");
+                        console.log(terms);
+                        return false;
+                    }
+                });
+             $("#TopicsAutoComplete").bind("keydown", function (event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+                .autocomplete({
+                    minLength: 1,
+                    source: function (request, response) {
+                        // delegate back to autocomplete, but extract the last term
+                        $.getJSON("/Topics/GetAllTopics", { term: extractLast(request.term) }, response);
+                    },
+                    focus: function () {
+                        // prevent value inserted on focus
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        var terms = split(this.value);
+                        // remove the current input
+                        terms.pop();
+                        // add the selected item
+                        terms.push(ui.item.value);
+                        // add placeholder to get the comma-and-space at the end
+                        terms.push("");
+                        this.value = terms.join(", ");
+                        console.log(terms);
+                        return false;
+                    }
+                });
+        });
+    </script>
+}
 @{
     if (Model.Status)
     {
         <h2>Create</h2>
-        <p>@Model.CallForPapersId - call for papers</p>
         using (Html.BeginForm("Submit", "Papers", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-            <label class="btn btn-default">
-                Browse <input type="file" name="file" hidden />
-            </label>
-            <input type="hidden" name="CallForPapersId" value="@Model.CallForPapersId" />
 
-            <input type="submit" value="OK" class="btn btn-default" />
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label class="col-form-label-sm">Enter the Authors:</label>
+                    </div>
+                    <div class="col-md-offset-1 col-md-9 col-sm-11">
+                        <input class="form-control col-md-10" id="AuthorsAutoComplete">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label class="col-form-label-sm">Choose the abstract:</label>
+                    </div>
+                    <div class="col-md-offset-1 col-md-9 col-sm-11">
+                        <input class="form-control col-md-10" id="AbstractsAutoComplete">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label class="col-form-label-sm">Choose the topics:</label>
+                    </div>
+                    <div class="col-md-offset-1 col-md-9 col-sm-11">
+                        <input class="form-control col-md-10" id="TopicsAutoComplete">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <label class="col-form-label-sm">Paper:</label>
+                    </div>
+                    <div class="col-md-offset-1 col-md-9 col-sm-11 btn btn-default">
+                        <label class="form-control col-md-10" for="upload">
+                            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                            <input type="file" name="file" style="display:none">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <input type="hidden" name="CallForPapersId" value="@Model.CallForPapersId" />
+            <input type="submit" value="Submit paper" class="btn btn-default" />
         }
         <div>
             @Html.ActionLink("Back to List", "Index")

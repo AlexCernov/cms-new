@@ -2,6 +2,7 @@
 using CMS.Repositories.Users;
 using CMS.Services.Users;
 using CMS.ViewModels.PCMemberViewModels;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace CMS.Controllers
@@ -84,6 +85,14 @@ namespace CMS.Controllers
         {
             IndexPCMemberViewModel model = new IndexPCMemberViewModel(ID.GetValueOrDefault(), PCMemberService);
             return View(model);
+        }
+
+
+        // GET: PCMembers/All
+        [HttpGet]
+        public JsonResult All(string term)
+        {
+            return Json(PCMemberService.FindAll().AsEnumerable().Where(a => a.Username.Contains(term)).Select(a => new {label = a.Username }), JsonRequestBehavior.AllowGet);
         }
 
         //// GET: PCMembers/Details/5
