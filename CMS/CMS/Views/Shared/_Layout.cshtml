@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -6,15 +7,39 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
+
 	<title>@ViewBag.Title - EasierChair</title>
 	<style>
 		.navbar-nav > li > .dropdown-menu {
-			background-color: #000000;
+			background-color: #222222 !important;
 		}
 
-		.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-			background-color: #000000 !important;
+		.btn-primary, .btn-primary:hover, .btn-primary:visited {
+			background-color: #222222 !important;
 		}
+
+			.btn-primary:active {
+				background-color: #000000 !important;
+			}
+
+		.ui-helper-hidden-accessible {
+			display: none;
+		}
+
+		ul {
+			list-style-type: none;
+			width: 200px;
+		}
+
+		li {
+			text-decoration-color: aliceblue;
+		}
+
+			li:hover {
+				background-color: dodgerblue;
+			}
 	</style>
 </head>
 <body>
@@ -50,8 +75,9 @@
 	<div class="container body-content">
 		@RenderBody()
 	</div>
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
+
+
 	@RenderSection("scripts", required: false)
+
 </body>
 </html>

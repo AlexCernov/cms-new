@@ -1,4 +1,6 @@
 ﻿using CMS.Models;
+using CMS.Repositories.Entities;
+using CMS.Services.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,9 +18,15 @@ namespace CMS.Controllers
 
 		// There might not be a use for all the views/methods that were automatically generated
 		private DatabaseContext db = new DatabaseContext();
+        private readonly TopicService topicService;
 
-		// GET: Reviews
-		public ActionResult Index()
+        public TopicsController()
+        {
+            topicService = new TopicService(new TopicRepository());
+        }
+
+        // GET: Reviews
+        public ActionResult Index()
 		{
 			return View(db.Topics.ToList());
 		}
@@ -43,11 +51,16 @@ namespace CMS.Controllers
 		{
 			return View();
 		}
+        [HttpGet]
+        public JsonResult All(string term)
+        {
+            return Json(topicService.FindAll().AsEnumerable().Where(a => a.Description.Contains(term)).Select(a => new { label = a.Description}), JsonRequestBehavior.AllowGet);
+        }
 
-		// POST: Reviews/Create
-		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-		// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
+        // POST: Reviews/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create([Bind(Include = "Id,Result,Justification")] Topic topic)
 		{

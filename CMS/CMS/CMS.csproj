@@ -170,6 +170,7 @@
       <DependentUpon>ModelTest.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Entities\TopicRepository.cs" />
     <Compile Include="Repositories\Entities\AbstractRepository.cs" />
     <Compile Include="Repositories\Entities\CallForPapersRepository.cs" />
     <Compile Include="Repositories\Entities\ComiteeRepository.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Repositories\IEntityRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\Users\PCMemberRepository.cs" />
+    <Compile Include="Services\Entities\TopicService.cs" />
     <Compile Include="Services\Entities\CallForPaperService.cs" />
     <Compile Include="Services\Entities\ConferenceService.cs" />
     <Compile Include="Services\IEntityService.cs" />

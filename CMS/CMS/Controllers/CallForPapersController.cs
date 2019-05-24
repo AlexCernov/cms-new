@@ -65,15 +65,15 @@ namespace CMS.Controllers
             return View(model);
         }
 
-        
+
         [HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(CallForPapers callForPapers)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Acronym,Name,StartDate,DeadlineAbstract,DeadlineProposal,Topics")] CreateCallForPapersViewModel modeel)
 		{
 			try
 			{
-                CreateCallForPapersViewModel model = new CreateCallForPapersViewModel(ModelState.IsValid, callForPapers, CallForPaperService);
-				return View(model);
+                modeel.addCallForPapers(ModelState.IsValid,CallForPaperService);
+				return View(modeel);
 			}
 			catch (System.Exception)
 			{

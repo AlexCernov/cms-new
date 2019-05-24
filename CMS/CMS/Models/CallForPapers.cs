@@ -13,9 +13,14 @@ namespace CMS.Models
 
         }
 
-        public CallForPapers(string Acronym, ICollection<Topic> Topics)
+        public CallForPapers(int Id,string Acronym, string Name, DateTime StartDate, DateTime DeadlineAbstract, DateTime DeadlineProposal,ICollection<Topic> Topics)
         {
+            this.Id = Id;
             this.Acronym = Acronym;
+            this.Name = Name;
+            this.StartDate = StartDate;
+            this.DeadlineAbstract = DeadlineAbstract;
+            this.DeadlineProposal = DeadlineProposal;   
             this.Topics = Topics;
         }
 
