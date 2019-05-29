@@ -13,6 +13,17 @@
     <div class="form-horizontal">
         <h4>Abstract</h4>
         <hr />
+
+        @using(Html.BeginForm("Upload","Abstract", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table cellpadding="2" cellspacing="2">
+                <tr>
+                    <td>File</td>
+                    <td> <input type="file" name="FileUploader" /> </td>
+                </tr>
+            </table>
+        }
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
